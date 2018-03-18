@@ -9,9 +9,8 @@ import ProductList from './ProductList'
 import ProductDetails from './ProductDetails'
 
 class App extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       category: null,
       products: [],
@@ -23,7 +22,6 @@ class App extends Component {
   componentDidMount() {
     axios.get(`http://localhost:8080/featuredData`)
       .then((response) => {
-        console.log(response.data)
         this.setState({
           FeaturedItems: response.data
         })
@@ -31,11 +29,8 @@ class App extends Component {
   }
 
   refreshProducts = (category) => {
-    console.log(category)
     axios.get(`http://localhost:8080/products/${category}`)
       .then((response) => {
-        // console.log(response.data)
-        // console.log(this.state.products)
         this.setState({
           category,
           products: response.data
@@ -43,9 +38,7 @@ class App extends Component {
       })
   }
 
-
   render() {
-  //console.log(this.state.products)
     return (
       <div className="App">
         <Nav
@@ -58,30 +51,29 @@ class App extends Component {
             <Switch>
               <Route exact path='/home' render={(props) => {
                 return <FeaturedItems
-                  FeaturedItems={this.state.FeaturedItems}  
+                  FeaturedItems={this.state.FeaturedItems}
                   {...props}
-                  />
+                />
               }
               } />
               <Route exact path='/home/:featureASIN' render={(props) => {
                 return <FeaturedDetails
-                  FeaturedItems={this.state.FeaturedItems} 
+                  FeaturedItems={this.state.FeaturedItems}
                   {...props}
-                  />
+                />
               }
               } />
               <Route exact path='/products/:category' render={(props) => {
-                this.refreshProducts(props.match.params.category)
                 return <ProductList
-                  category={this.state.category}
-                  refreshProducts={this.refreshProducts}
+                  category={props.match.params.category} // get the category from the route, not the state, as the state hasn't been updated at this point. The child component ProductList will call refreshProducts and subsequently update the app state's category and products
                   productList={this.state.products}
+                  refreshProducts={this.refreshProducts}
                   {...props}
                 />
               }
               } />
               <Route path='/products/:category/:productASIN' render={(props) => {
-                console.log("gets here!") 
+                console.log("gets here!");
                 return <ProductDetails
                   productList={this.state.products}
                   {...props} />
