@@ -11,16 +11,28 @@ body {
 $heading-color: #5a898f;
 $heading-font: 'Playfair Display', serif;
 
-h1, h2, {
+$secHeading-color:#fcfcfc;
+$secHeading-font:'Oswald', sans-serif;
+$secHeading-font-weight: 400;
+
+
+h1{
     color: $heading-color;
     font-family: $heading-font;
+    padding-top:5%;
+    margin-left:2rem;
 }
 
 
-h3,h4,h5, {
-  font-family: 'Oswald', sans-serif;
+h2,h3,{
+  color: $secHeading-color;
+  font-family: $secHeading-font;
+  font-weight: $secHeading-font-weight;
 }
 
+h4,h5, {
+  font-family: $secHeading-font;
+}
 
 main {
   padding-left: 300px;

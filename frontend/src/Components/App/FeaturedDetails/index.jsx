@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { Card, CardTitle, Row, Col } from 'react-materialize'
+import { Row} from 'react-materialize'
+
+
+
+
 
 
 class FeaturedDetails extends Component {
@@ -52,7 +56,7 @@ class FeaturedDetails extends Component {
                         <p className>{filterItem[0].ItemAttributes[0].Feature[1]}</p>
                     </div> 
                 </div>
-                <h4>Other Products Your Might Like</h4>
+                <h4 className="othersHeader">Other Products Your Might Like</h4>
                 <div>
                     <Row>
                     {/* {othersJSX} APPEARS AS UNDEFINED */}

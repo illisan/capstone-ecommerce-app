@@ -21,7 +21,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-
     axios.get(`http://localhost:8080/featuredData`)
       .then((response) => {
         console.log(response.data)
@@ -33,7 +32,6 @@ class App extends Component {
 
   refreshProducts = (category) => {
     console.log(category)
-    console.log(" asdfghjklqwertyuiozxcvbnm")
     axios.get(`http://localhost:8080/products/${category}`)
       .then((response) => {
         // console.log(response.data)
@@ -46,14 +44,8 @@ class App extends Component {
   }
 
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log(nextProps)
-  //   console.log(nextState)
-  //   return nextState.category === this.state.category
-  // }
-
   render() {
-  console.log(this.state.products)
+  //console.log(this.state.products)
     return (
       <div className="App">
         <Nav
@@ -66,7 +58,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/home' render={(props) => {
                 return <FeaturedItems
-                  FeaturedItems={this.state.FeaturedItems} 
+                  FeaturedItems={this.state.FeaturedItems}  
                   {...props}
                   />
               }
@@ -79,15 +71,15 @@ class App extends Component {
               }
               } />
               <Route exact path='/products/:category' render={(props) => {
-                this.refreshProducts(props.match.params.category) //conditional rendering? isLoaded?
+                this.refreshProducts(props.match.params.category)
                 return <ProductList
                   category={this.state.category}
+                  refreshProducts={this.refreshProducts}
                   productList={this.state.products}
                   {...props}
                 />
               }
               } />
-              {/* /products/${this.state.category}/${item.ASIN} */}
               <Route path='/products/:category/:productASIN' render={(props) => {
                 console.log("gets here!") 
                 return <ProductDetails
@@ -105,9 +97,4 @@ class App extends Component {
 
 
 export default App;
-// export default  () => (
-//   App,
-//   <Button waves='light'>
-//     <Icon>thumb_up</Icon>
-//   </Button>
-// )
+

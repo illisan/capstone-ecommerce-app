@@ -4,12 +4,19 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 1.5rem; }
 
-h1, h2 {
+h1 {
   color: #5a898f;
-  font-family: "Playfair Display", serif; }
+  font-family: "Playfair Display", serif;
+  padding-top: 5%;
+  margin-left: 2rem; }
 
-h3, h4, h5 {
-  font-family: 'Oswald', sans-serif; }
+h2, h3 {
+  color: #fcfcfc;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400; }
+
+h4, h5 {
+  font-family: "Oswald", sans-serif; }
 
 main {
   padding-left: 300px; }
@@ -58,52 +65,52 @@ input[type="text"] {
 .masonry {
   margin: 1.5em 0;
   padding: 0;
-  -moz-column-gap: 1.5em;
-  -webkit-column-gap: 1.5em;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  grid-gap: .5em; }
 
 .child {
   /* Masonry bricks or child elements */
-  display: inline-block;
   background: #fff;
   margin: 0 0 .5em;
   width: 100%;
   box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box; }
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid; }
 
 @media only screen and (min-width: 700px) {
   .masonry {
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
     column-count: 2; } }
 
 @media only screen and (min-width: 900px) {
   .masonry {
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
     column-count: 3; } }
 
 .mainBox {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  margin-left: 2rem; }
 
 @media only screen and (max-width: 992px) {
   .mainBox {
     flex-direction: column; } }
 
 .priceBox {
-  margin: 0 5% 0 5%; }
+  margin: 0 5% 0 5%;
+  background: #e9d227;
+  padding: 5%; }
 
 img.productImg {
   border: solid;
   border-width: 2rem;
   border-color: #a3e2ea; }
 
-h2.itemTitle {
-  padding-bottom: 2rem; }
+h2.itemTitle, h4.othersHeader {
+  padding-bottom: 2rem;
+  margin-left: 2rem;
+  padding-top: 2rem; }
 
 .itemDetails {
-  background: #e9d227; }
+  background: #e75e62; }
 
 /*# sourceMappingURL=main.css.map */

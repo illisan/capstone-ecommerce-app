@@ -1,61 +1,53 @@
 import React, { Component } from 'react';
 import { Card, CardTitle, Row, Col } from 'react-materialize'
-//import ProductDetails from './ProductDetails'
 import { Link } from 'react-router-dom'
-
-
 
 
 
 class ProductList extends Component {
 
-    // componentWillMount () {
-    //     this.props.refreshProducts(this.props.c)
-    // }
+    componentWillMount() {
+        this.props.refreshProducts(this.props.category)
+    }
 
-    // shouldComponentUpdate (nextProps, nextState) {
-    //     console.log(nextProps)
-    //     console.log(nextState)
-    //     console.log(nextProps.category, this.props.category)
-    //     if (nextProps.category !== this.props.category ) {
-    //         return false
-    //     } else {
-    //         return true
-    //     }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.category === this.props.category) {
+            return;
+        } else {
+            this.props.refreshProducts(this.props.category)
+        }
 
-    // }
+    }
+
+    renderChild = (item, i) => (
+        //console.log(this.props.productList)
+        //console.log(i)
+        //console.log(item)
+        //console.log(this.props.match.params)
+        //console.log(category)
+        <div key={i}>
+            <Col className="child">
+                <Link to={`/products/${this.props.category}/${item.ASIN}`}>
+                    <Card header={<CardTitle image={item.ImageSets[0].ImageSet[0].LargeImage[0].URL[0]} waves='light' />}
+                        title={item.ItemAttributes[0].Title}>
+                        <h5>Price:{item.Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h5>
+                    </Card>
+                </Link>
+            </Col>
+        </div>
+    )
+
 
     render() {
-
-        //console.log(this.props.productList)
-        let productsJSX = this.props.productList.map((item, i) => {
-            // console.log(i)
-            // console.log(item)
-            //console.log(this.props.match.params)
-            //console.log(category)
-            return (<div key={i}>
-
-                <Col className="child">
-                    <Link to={`/products/${this.props.category}/${item.ASIN}`}>
-                        <Card header={<CardTitle image={item.ImageSets[0].ImageSet[0].LargeImage[0].URL[0]} waves='light' />}
-                            title={item.ItemAttributes[0].Title}>
-                            <h5>Price:{item.Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h5>
-                        </Card>
-                    </Link>
-                </Col>
-            </div>)
-        })
-
         return (
             <div>
-                <h2>Happy Shopping</h2>
+                <h2>Items for your {this.props.category}</h2>
                 <Row className="masonry">
-                    {productsJSX}
+                    {this.props.productList.map(this.renderChild)}
                 </Row>
-
             </div>
-        )
-    }
+            )
+        }
 
 }
 

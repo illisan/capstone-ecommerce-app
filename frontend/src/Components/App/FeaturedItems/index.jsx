@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardTitle, Row, Col } from 'react-materialize'
+import { Card, CardTitle, Row, Col } from 'react-materialize' 
 import { Link } from "react-router-dom"
 
 
@@ -14,7 +14,7 @@ class FeaturedItems extends Component {
         let featItemsJSX = featItemsArr.map((item, i) => {
 
             return (<div key={i}>
-                <Col className="child" s={12}>
+                <Col className="child">
                     <Link to={`/home/${item.ASIN}`}>
                         <Card header={<CardTitle image={item.ImageSets[0].ImageSet[0].LargeImage[0].URL[0]} waves='light' />}
                             title={item.ItemAttributes[0].Title}>
@@ -27,7 +27,7 @@ class FeaturedItems extends Component {
 
         return (
             <div>
-                <h2>Featured Items</h2>
+                <h1>Featured Items</h1>
                 <Row className="masonry">
                     {featItemsJSX}
                 </Row>

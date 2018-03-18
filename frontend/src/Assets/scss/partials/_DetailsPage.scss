@@ -5,27 +5,40 @@
     // display: grid;
     // grid-template-columns: repeat( auto-fit, minmax(100px, 1fr));
     // grid-column-gap: 10px;
+    margin-left: 2rem;
 }
     @media only screen and (max-width : 992px) {
       .mainBox {
         flex-direction: column;
       }
     }
+
 .priceBox {
     margin: 0 5% 0 5%;
+    background: #e9d227;
+    padding:5%;
 }
+
 img.productImg {
     border: solid;
     border-width: 2rem;
     border-color: #a3e2ea;
+}
 
+%message-shared {
+    padding-bottom: 2rem;
+    margin-left:2rem;
+    padding-top:2rem;
 }
 
 h2.itemTitle {
-    padding-bottom: 2rem;
+    @extend %message-shared;
+}
+
+h4.othersHeader {
+    @extend %message-shared;
 }
 
 .itemDetails {
-    // margin-left: 2rem;
-    background: #e9d227;
+    background: #e75e62;
 }
