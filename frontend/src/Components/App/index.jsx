@@ -16,7 +16,8 @@ class App extends Component {
       category: null,
       products: [],
       cart: [],
-      featuredItems: []
+      featuredItems: [],
+      cartQty: 0,
     }
   }
 
@@ -26,6 +27,35 @@ class App extends Component {
         this.setState({
           featuredItems: response.data
         })
+      })
+    // axios.get(`http://localhost:8080/getcart`)
+    //   .then((response) => {
+    //     console.log(response.data)
+    //     this.setState({
+    //       cart: response.data.cart
+    //     })
+    //   })
+
+  }
+
+  componentWilMount() {
+    axios.get(`http://localhost:8080/getcart`)
+      .then((response) => {
+        console.log(response.data)
+        this.setState({
+          cart: response.data.cart
+        })
+      })
+  }
+
+  componentDidUpdate() {
+    axios.post('http://localhost:8080/postcart', {
+      cart: this.state.cart
+    })
+      .then((response) => {
+        if (response.data.success) {
+          console.log('Cart Items Saved')
+        }
       })
   }
 
@@ -48,8 +78,20 @@ class App extends Component {
     console.log(this.state.cart)
 
     this.setState({
-      cart: this.state.cart
+      cart: this.state.cart,
+      cartQty: this.state.cartQty + 1
     });
+  }
+
+  removeItem = (cartIndex) => {
+
+    let newCartArr = [...this.state.cart];
+    newCartArr.splice(cartIndex, 1)
+
+    this.setState({
+      cart: newCartArr,
+      cartQty: this.state.cartQty - 1
+    })
   }
 
   render() {
@@ -81,6 +123,7 @@ class App extends Component {
               <Route exact path='/cart' render={(props) => {
                 return <Cart
                   cart={this.state.cart}
+                  removeItem={this.removeItem}
                   {...props}
                 />
               }

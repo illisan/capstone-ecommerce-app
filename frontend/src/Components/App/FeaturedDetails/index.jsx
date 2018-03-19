@@ -17,25 +17,23 @@ class FeaturedDetails extends Component {
         })
         console.log(filterItem)
 
-        // MAPPING OUT SIMILAR PRODUCTS ARRAY IN A CONDITIONAL, SHOWS AS "othersJSX is not defined :( "
+        // MAPPING OUT SIMILAR PRODUCTS ARRAY IN A CONDITIONAL: Doesn't show array
 
-        // console.log(filterItem[0].SimilarProducts)        
-        // if (filterItem[0].SimilarProducts !== undefined) {
-        //     //console.log(filterItem[0].SimilarProducts[0].SimilarProduct)
-        //     let similarItems = (filterItem[0].SimilarProducts[0].SimilarProduct)
-        //     //console.log(similarItems)
-        //     let othersJSX = similarItems.map((item, i) => {
-        //         console.log(othersJSX)
-        //         console.log(item.Title[0])
-        //         return (<div key={i}>
-        //             <h4>{item.Title[0]}</h4>
-        //         </div>)
+        let similarItems =
+        console.log(filterItem[0].SimilarProducts)        
+        if (filterItem[0].SimilarProducts !== undefined) {
+            console.log(filterItem[0].SimilarProducts[0].SimilarProduct)
+            //let similarItems = (filterItem[0].SimilarProducts[0].SimilarProduct)
+            //console.log(similarItems)
+            let otherArr = filterItem[0].SimilarProducts[0].SimilarProduct.map((item, i) => {
+                //console.log(othersJSX)
+                console.log(item.Title[0])
+                return (<div key={i}>
+                    <h4>{item.Title[0]}</h4>
+                </div>)
 
-        //     })
-        // }   
-
-
-        let image = filterItem[0].ImageSets[0] //assigning arrays to variable
+            })
+        }   
     
         return (
             <div className="itemDetails">
@@ -44,7 +42,7 @@ class FeaturedDetails extends Component {
                     <div className="imgBox">
                         <img className="productImg" alt="" src={
                         filterItem[0].LargeImage === undefined ? //ternary works for most images but not others, ex.matcha and coffee capsules.
-                        image.ImageSet[0].LargeImage[0].URL[0] :
+                        filterItem[0].ImageSets[0].ImageSet[0].LargeImage[0].URL[0] :
                         filterItem[0].LargeImage[0].URL[0]
                         }
                         />   
@@ -58,7 +56,7 @@ class FeaturedDetails extends Component {
                 <h4 className="othersHeader">Other Products Your Might Like</h4>
                 <div>
                     <Row>
-                    {/* {othersJSX} APPEARS AS UNDEFINED */}
+                        <h4>{similarItems}</h4>
                     </Row>
                 </div>
             </div>

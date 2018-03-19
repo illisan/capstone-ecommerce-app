@@ -4,6 +4,7 @@ const port = process.argv[2] || 8080
 const bodyParser = require('body-parser')
 const amazon = require('amazon-product-api')  //requireing amazon api library.
 const router = express.Router()
+const fs = require('fs')
 
 
 app.use((req, res, next) => {  // CORS
@@ -14,6 +15,25 @@ app.use((req, res, next) => {  // CORS
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+
+fs.readFile('cart.json', (err, data) => {
+    if (data) {
+        cart = JSON.parse(data)
+    }
+})
+
+app.get('/getcart', (req, res) => {
+    res.send(cart)
+})
+
+app.post('/postcart', (req, res) => {
+    // console.log(res)
+    let newItem = req.body
+    cart = newItem
+    fs.writeFile('cart.json', JSON.stringify(cart))
+    res.json({ success: true })
+})
 
 
 var client = amazon.createClient({
