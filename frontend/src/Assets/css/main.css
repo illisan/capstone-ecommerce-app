@@ -113,4 +113,8 @@ h2.itemTitle, h4.othersHeader {
 .itemDetails {
   background: #e75e62; }
 
+.addBtn {
+  background: #5a898f;
+  height: 3rem; }
+
 /*# sourceMappingURL=main.css.map */

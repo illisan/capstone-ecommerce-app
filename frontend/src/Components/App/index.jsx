@@ -3,6 +3,7 @@ import '../../Assets/css/main.css';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom'
 import Nav from './Nav'
+import Cart from './Cart'
 import FeaturedItems from './FeaturedItems'
 import FeaturedDetails from './FeaturedDetails'
 import ProductList from './ProductList'
@@ -15,7 +16,7 @@ class App extends Component {
       category: null,
       products: [],
       cart: [],
-      FeaturedItems: []
+      featuredItems: []
     }
   }
 
@@ -23,7 +24,7 @@ class App extends Component {
     axios.get(`http://localhost:8080/featuredData`)
       .then((response) => {
         this.setState({
-          FeaturedItems: response.data
+          featuredItems: response.data
         })
       })
   }
@@ -36,6 +37,19 @@ class App extends Component {
           products: response.data
         })
       })
+  }
+
+
+  addToCart = (item) => {
+    console.log('cart function getting called')
+    console.log(item)
+
+    this.state.cart.unshift(item);
+    console.log(this.state.cart)
+
+    this.setState({
+      cart: this.state.cart
+    });
   }
 
   render() {
@@ -51,14 +65,22 @@ class App extends Component {
             <Switch>
               <Route exact path='/home' render={(props) => {
                 return <FeaturedItems
-                  FeaturedItems={this.state.FeaturedItems}
+                  featuredItems={this.state.featuredItems}
                   {...props}
                 />
               }
               } />
               <Route exact path='/home/:featureASIN' render={(props) => {
                 return <FeaturedDetails
-                  FeaturedItems={this.state.FeaturedItems}
+                  featuredItems={this.state.featuredItems}
+                  addToCart={this.addToCart}
+                  {...props}
+                />
+              }
+              } />
+              <Route exact path='/cart' render={(props) => {
+                return <Cart
+                  cart={this.state.cart}
                   {...props}
                 />
               }
@@ -76,6 +98,7 @@ class App extends Component {
                 console.log("gets here!");
                 return <ProductDetails
                   productList={this.state.products}
+                  addToCart={this.addToCart}
                   {...props} />
               }
               } />

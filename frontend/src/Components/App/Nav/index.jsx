@@ -14,6 +14,7 @@ class Nav extends Component {
                 <SideNavItem className="searchBox"><Icon>search</Icon><input type="text" placeholder="Search" /></SideNavItem>
                 <div className="navLinks">
                     <SideNavItem><Link to="/home">Home</Link></SideNavItem>
+                    <SideNavItem><Link to="/cart">Cart</Link></SideNavItem>
                     <SideNavItem><Link to="/products">Shop</Link></SideNavItem>
                     <SideNavItem><Link to="/products/baby">Baby</Link></SideNavItem>
                     <SideNavItem><Link to="/products/beauty">Beauty</Link></SideNavItem>

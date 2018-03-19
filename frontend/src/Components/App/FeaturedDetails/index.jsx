@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Row} from 'react-materialize'
-
-
+import {Row, Button} from 'react-materialize'
 
 
 
@@ -10,7 +8,7 @@ class FeaturedDetails extends Component {
 
     render() {
 
-        let allItems = this.props.FeaturedItems
+        let allItems = this.props.featuredItems
         let params = this.props.match.params
 
         let filterItem = allItems.filter((item, i) => {
@@ -54,6 +52,7 @@ class FeaturedDetails extends Component {
                     <div className="priceBox">
                         <h3>{filterItem[0].Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h3>
                         <p className>{filterItem[0].ItemAttributes[0].Feature[1]}</p>
+                        <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(filterItem) }} >Add to Cart</Button>
                     </div> 
                 </div>
                 <h4 className="othersHeader">Other Products Your Might Like</h4>

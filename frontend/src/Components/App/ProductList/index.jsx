@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Card, CardTitle, Row, Col } from 'react-materialize'
+import { Card, CardTitle, Row, Col} from 'react-materialize'
 import { Link } from 'react-router-dom'
 
 class ProductList extends Component {
+
+
     componentWillMount() {
         this.props.refreshProducts(this.props.category);
     }
@@ -26,7 +28,7 @@ class ProductList extends Component {
                         <h5>Price:{item.Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h5>
                     </Card>
                 </Link>
-            </Col>
+            </Col> 
         </div>
     )
 
@@ -38,7 +40,7 @@ class ProductList extends Component {
                     {this.props.productList.map(this.renderChild)}
                 </Row>
             </div>
-        );
+        )
     }
 }
 
