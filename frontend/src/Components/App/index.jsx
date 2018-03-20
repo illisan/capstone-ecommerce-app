@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../Assets/css/main.css';
 import axios from 'axios';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 import Nav from './Nav'
 import Cart from './Cart'
@@ -21,9 +21,10 @@ class App extends Component {
       cart: [],
       featuredItems: [],
       cartQty: 0,
-      total:0,
-      searchResults:[],
-      keywords: null, 
+      total: 0,
+      searchResults: [],
+      keywords: null,
+      fireRedirect: false
     }
   }
 
@@ -37,7 +38,7 @@ class App extends Component {
 
   }
 
-  searchItems=(keywords)=>{
+  searchItems = (keywords) => {
     console.log("search search search")
     console.log(keywords)
     axios.get(`http://localhost:8080/searchData?keyword=${keywords}+fair%20trade+organic`)
@@ -49,6 +50,7 @@ class App extends Component {
         console.log(response.data)
         console.log(this.state.keywords)
       })
+      
   }
 
   // componentWillMount() {
@@ -83,6 +85,24 @@ class App extends Component {
   }
 
 
+  submitSearch = (event) => {
+    event.preventDefault();
+    console.log(event.target.searchBox.value)
+    let query = event.target.searchBox.value
+    axios.get(`http://localhost:8080/searchData?keyword=${query}+fair%20trade+organic`)
+      .then((response) => {
+        this.setState({
+          searchResults: response.data,
+          keywords: query,
+          fireRedirect: true
+        })
+        // return <Redirect to={`/search/${query}`} />
+        // console.log(this.state)
+      })
+      // this.event.target.value = '' do later 
+  }
+
+
   addToCart = (item) => {
     console.log('cart function getting called')
     console.log(item)
@@ -95,8 +115,8 @@ class App extends Component {
       cartQty: this.state.cartQty + 1
     });
   }
-// onClick of Clear button, the entire item is removed from cart. 
-// the price of the removed item is subtracted from the total.
+  // onClick of Clear button, the entire item is removed from cart. 
+  // the price of the removed item is subtracted from the total.
   removeItem = (cartIndex) => {
 
     let newCartArr = [...this.state.cart];
@@ -109,13 +129,16 @@ class App extends Component {
     })
   }
 
-  
+
 
   render() {
     return (
       <div className="App">
         <Nav
-          search={this.searchItems} />
+          search={this.searchItems}
+          submitSearch={this.submitSearch}
+          fireRedirect={this.state.fireRedirect}
+          />
         <main>
           <header className="App-header">
             <img className="bbLogo responsive-img" alt="" src="../../../bb_logo.png" />

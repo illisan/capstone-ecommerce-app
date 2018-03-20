@@ -10,7 +10,7 @@ class ProductDetails extends Component {
         console.log(this.props.match.params)
 
         let products = this.props.productList
-        let params = this.props.match.params
+        let params = this.props.match.params 
 
         let filterItem = products.filter((item, i) => {
             if (item.ASIN[0] === params.productASIN)
@@ -25,7 +25,7 @@ class ProductDetails extends Component {
                 <div className="mainBox">
                     <div className="imgBox">
                         <img className="productImg" alt="" src={
-                            filterItem[0].LargeImage === undefined ? //ternary works for most images but not others, ex.matcha and coffee capsules.
+                            filterItem[0].LargeImage === undefined ? 
                                 image.ImageSet[0].LargeImage[0].URL[0] :
                                 filterItem[0].LargeImage[0].URL[0]
                         }

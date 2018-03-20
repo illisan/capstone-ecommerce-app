@@ -18,7 +18,7 @@ class SearchResults extends Component {
                 </Link>
             </Col>
         </div>
-    )
+    ) 
 
     render() {
         // console.log('search results oh wow')

@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import { Icon, SideNav, SideNavItem, Button } from 'react-materialize'
-import { Link, } from "react-router-dom"
+import { Link, Redirect} from "react-router-dom"
 
-//tell the api to search multiple categories (search indeces)
-//on component 
-//attach click to link and then take value of 'Baby' then get req of value 
 
 class Nav extends Component {
 
+
+
     render() {
+
+        const {from} = this.props.location || "/"
         return (
             <SideNav id="slide-out" className="side-nav fixed" trigger={<p> </p>}>
-                <li className="searchBox">
-                    <input className="searchBar" ref={self => { this.inputBox = self }} type="text" placeholder="Search" />
-                    <Link to="/search/:keywords">
-                        <Button className="searchBtn" onClick={() => { this.props.search(this.inputBox.value) }}><Icon>search</Icon></Button>
-                    </Link>
-                </li>
+                
+                <form className="searchBox" onSubmit={(event) => { this.props.submitSearch(event) }}>
+                    <input name ="searchBox" className="searchBar" placeholder="Search"/>
+                </form>
+                {this.props.fireRedirect && (
+                    <Redirect to ={from || "/search/:keywords"} />
+                )}
 
                 <div className="navLinks">
                     <li><Link to="/home">Home</Link></li>

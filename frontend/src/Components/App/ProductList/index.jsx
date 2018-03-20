@@ -17,7 +17,7 @@ class ProductList extends Component {
     }
 
     renderChild = (item, i) => (
-
+ 
         <div key={i}>
             <Col className="child">
                 <Link to={`/products/${this.props.category}/${item.ASIN}`}>

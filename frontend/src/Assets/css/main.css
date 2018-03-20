@@ -47,12 +47,6 @@ section {
 .col.child {
   background: #a3e2ea; }
 
-.searchBox {
-  padding-left: 0px;
-  padding-right: 0px;
-  display: flex;
-  flex-direction: row-reverse; }
-
 .navLinks {
   padding-top: 40%; }
 
@@ -63,19 +57,11 @@ section {
   font-size: 18px; }
 
 input[type="text"] {
-  font-size: 1.5rem; }
+  font-size: 1.5rem;
+  padding-left: 2rem; }
 
 input.searchBar {
-  border-bottom: 0.5px solid #c1bdbd;
-  height: 8.5rem;
-  position: absolute; }
-
-button.btn.searchBtn {
-  margin-left: 30%;
-  margin-top: 60%; }
-
-a {
-  z-index: 2; }
+  height: 6rem; }
 
 .footer {
   margin-top: 220px;

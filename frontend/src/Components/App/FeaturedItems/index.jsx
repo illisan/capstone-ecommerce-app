@@ -17,7 +17,7 @@ class FeaturedItems extends Component {
             </Col>
         </div>
     )
-
+ 
     render() {
         return (
             <div>
