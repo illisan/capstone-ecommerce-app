@@ -11,8 +11,10 @@ class Nav extends Component {
     render() {
         return (
             <SideNav id="slide-out" className="side-nav fixed" trigger={<p> </p>}>
-                <SideNavItem className="searchBox"><input ref={self => {this.inputBox = self}} type="text" placeholder="Search"/></SideNavItem><br/>
-                <Button onClick={() => {this.props.search(this.inputBox.value)}}>search</Button>
+                <SideNavItem className="searchBox">
+                    <input ref={self => {this.inputBox = self}} type="text" placeholder="Search"/>
+                    <Button onClick={() => { this.props.search(this.inputBox.value) }}><Icon>search</Icon></Button>
+                </SideNavItem>
                 <div className="navLinks">
                     <SideNavItem><Link to="/home">Home</Link></SideNavItem>
                     <SideNavItem><Link to="/cart">Cart</Link></SideNavItem>

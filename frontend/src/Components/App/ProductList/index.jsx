@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardTitle, Row, Col} from 'react-materialize'
 import { Link } from 'react-router-dom'
-
+ 
 class ProductList extends Component {
 
 

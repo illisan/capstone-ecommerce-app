@@ -8,6 +8,7 @@ import FeaturedItems from './FeaturedItems'
 import FeaturedDetails from './FeaturedDetails'
 import ProductList from './ProductList'
 import ProductDetails from './ProductDetails'
+import SearchResults from './SearchResults'
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class App extends Component {
       featuredItems: [],
       cartQty: 0,
       total:0,
-      searchProducts:[],
+      searchResults:[],
+      keywords: null, 
     }
   }
 
@@ -36,12 +38,14 @@ class App extends Component {
   searchItems=(keywords)=>{
     console.log("search search search")
     console.log(keywords)
-    axios.get(`http://localhost:8080/searchData?keyword=${keywords}`)
+    axios.get(`http://localhost:8080/searchData?keyword=${keywords}+fair%20trade+organic`)
       .then((response) => {
         this.setState({
-          searchProducts: response.data
+          searchResults: response.data,
+          keywords
         })
         console.log(response.data)
+        console.log(this.state.keywords)
       })
   }
 
@@ -150,10 +154,17 @@ class App extends Component {
               }
               } />
               <Route path='/products/:category/:productASIN' render={(props) => {
-                console.log("gets here!");
                 return <ProductDetails
                   productList={this.state.products}
                   addToCart={this.addToCart}
+                  {...props} />
+              }
+              } />
+              <Route path='/search' render={(props) => {
+                return <SearchResults
+                  searchResults={this.state.searchResults}
+                  keywords={this.state.keywords}
+                  searchItems={this.searchItems}
                   {...props} />
               }
               } />
