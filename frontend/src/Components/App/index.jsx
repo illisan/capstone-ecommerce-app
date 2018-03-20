@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../Assets/css/main.css';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom'
+
 import Nav from './Nav'
 import Cart from './Cart'
 import FeaturedItems from './FeaturedItems'
@@ -9,6 +10,7 @@ import FeaturedDetails from './FeaturedDetails'
 import ProductList from './ProductList'
 import ProductDetails from './ProductDetails'
 import SearchResults from './SearchResults'
+import SearchDetails from './SearchDetails'
 
 class App extends Component {
   constructor(props) {
@@ -160,11 +162,18 @@ class App extends Component {
                   {...props} />
               }
               } />
-              <Route path='/search' render={(props) => {
+              <Route exact path='/search/:keyword' render={(props) => {
                 return <SearchResults
                   searchResults={this.state.searchResults}
                   keywords={this.state.keywords}
                   searchItems={this.searchItems}
+                  {...props} />
+              }
+              } />
+              <Route path='/search/:keywords/:productASIN' render={(props) => {
+                return <SearchDetails
+                  searchResults={this.state.searchResults}
+                  addToCart={this.addToCart}
                   {...props} />
               }
               } />

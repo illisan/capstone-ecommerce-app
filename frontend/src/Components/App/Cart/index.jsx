@@ -85,11 +85,11 @@ class Cart extends Component {
             return sum += Number(item[0].Offers[0].Offer[0].OfferListing[0].Price[0].Amount[0]) / 100
         }, 0)
         if (getTotal === 0) {
-            getTotal = "Your Cart Is Empty :("
+            getTotal = "Your Cart Is Currently Empty"
         }
         return (
             <div>
-                <h2>This is your cart</h2>
+                <h2>Shopping Cart</h2>
                 <Row >
                     {this.props.cart.map(this.renderCart)}
                 </Row>

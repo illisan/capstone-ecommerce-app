@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
  
 class ProductList extends Component {
 
-
     componentWillMount() {
         this.props.refreshProducts(this.props.category);
     }
@@ -35,7 +34,7 @@ class ProductList extends Component {
     render() {
         return (
             <div>
-                <h2>Items for your {this.props.category}</h2>
+                <h2>{this.props.category} Items</h2>
                 <Row className="masonry">
                     {this.props.productList.map(this.renderChild)}
                 </Row>

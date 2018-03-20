@@ -100,7 +100,7 @@ app.get('/products/:category', (req, res) => {
                     console.log(err);
                 });
             break
-        case 'beauty':
+        case 'eauty':
             result =
                 client.itemSearch({
                     searchIndex: 'Beauty',

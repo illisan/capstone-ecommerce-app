@@ -9,7 +9,7 @@ class SearchResults extends Component {
  renderSearch = (item, i) => (
          <div key={i}>
             <Col className="child">
-                <Link to={`/search/${item.ASIN}`}>
+             <Link to={`/search/${this.props.keywords}/${item.ASIN}`}>
                     <Card
                         header={<CardTitle image={item.ImageSets[0].ImageSet[0].LargeImage[0].URL[0]} waves='light' />}
                         title={item.ItemAttributes[0].Title}>

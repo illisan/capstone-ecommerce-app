@@ -3,13 +3,13 @@ import { Row, Button } from 'react-materialize'
 
 
 
-class ProductDetails extends Component { 
+class SearchDetails extends Component {
 
     render() {
-        console.log(this.props.productList)
+        console.log(this.props.searchResults)
         console.log(this.props.match.params)
 
-        let products = this.props.productList
+        let products = this.props.searchResults
         let params = this.props.match.params
 
         let filterItem = products.filter((item, i) => {
@@ -43,4 +43,9 @@ class ProductDetails extends Component {
     }
 }
 
-export default ProductDetails;
+
+
+
+
+
+export default SearchDetails;
