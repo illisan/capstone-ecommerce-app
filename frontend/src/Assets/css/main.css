@@ -48,7 +48,10 @@ section {
   background: #a3e2ea; }
 
 .searchBox {
-  padding-top: 5%; }
+  padding-left: 0px;
+  padding-right: 0px;
+  display: flex;
+  flex-direction: row-reverse; }
 
 .navLinks {
   padding-top: 40%; }
@@ -61,6 +64,33 @@ section {
 
 input[type="text"] {
   font-size: 1.5rem; }
+
+input.searchBar {
+  border-bottom: 0.5px solid #c1bdbd;
+  height: 8.5rem;
+  position: absolute; }
+
+button.btn.searchBtn {
+  margin-left: 30%;
+  margin-top: 60%; }
+
+a {
+  z-index: 2; }
+
+.footer {
+  margin-top: 220px;
+  background: #ccddc2;
+  height: 300px; }
+
+.side-nav .subheader {
+  font-size: 20px;
+  margin-left: 2rem; }
+
+.categories {
+  padding: 3%; }
+
+.categories li {
+  margin-bottom: 1rem; }
 
 .masonry {
   margin: 1.5em 0;

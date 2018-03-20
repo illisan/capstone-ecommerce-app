@@ -1,12 +1,15 @@
 .searchBox{
-    padding-top:5%;
+    padding-left: 0px;
+    padding-right: 0px;
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .navLinks {
     padding-top: 40%;
 }
 
-.side-nav.fixed {
+.side-nav.fixed { 
     background-color:#fcfcfc;
 }
 
@@ -16,4 +19,41 @@
 
 input[type="text"] {
     font-size: 1.5rem;
+    //margin-left: 2rem;
+}
+
+input.searchBar {
+    border-bottom: .5px solid hsl(0, 3%, 75%);
+    height:8.5rem;
+    position:absolute;
+}
+
+button.btn.searchBtn {
+    margin-left: 30%;
+    margin-top: 60%;
+}
+
+a {
+    z-index: 2;
+}
+
+.footer {
+    margin-top: 220px;
+    background:#ccddc2;
+    height: 300px;
+}
+
+.side-nav .subheader{
+    font-size:20px;
+    margin-left: 2rem;
+}
+
+.categories {
+    padding:3%;
+}
+
+.categories {
+    li {
+        margin-bottom: 1rem;
+    }
 }

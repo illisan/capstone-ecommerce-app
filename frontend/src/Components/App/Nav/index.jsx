@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Icon, SideNav, SideNavItem, Button} from 'react-materialize'
-import { Link, } from "react-router-dom" 
+import { Icon, SideNav, SideNavItem, Button } from 'react-materialize'
+import { Link, } from "react-router-dom"
 
 //tell the api to search multiple categories (search indeces)
 //on component 
@@ -11,22 +11,32 @@ class Nav extends Component {
     render() {
         return (
             <SideNav id="slide-out" className="side-nav fixed" trigger={<p> </p>}>
-                <SideNavItem className="searchBox">
-                    <input ref={self => {this.inputBox = self}} type="text" placeholder="Search"/>
+                <li className="searchBox">
+                    <input className="searchBar" ref={self => { this.inputBox = self }} type="text" placeholder="Search" />
                     <Link to="/search/:keywords">
-                        <Button onClick={() => { this.props.search(this.inputBox.value) }}><Icon>search</Icon></Button>
+                        <Button className="searchBtn" onClick={() => { this.props.search(this.inputBox.value) }}><Icon>search</Icon></Button>
                     </Link>
-                </SideNavItem>
+                </li>
+
                 <div className="navLinks">
-                    <SideNavItem><Link to="/home">Home</Link></SideNavItem>
-                    <SideNavItem><Link to="/cart">Cart</Link></SideNavItem>
-                    <SideNavItem><Link to="/products">Shop</Link></SideNavItem>
-                    <SideNavItem><Link to="/products/baby">Baby</Link></SideNavItem>
-                    <SideNavItem><Link to="/products/beauty">Beauty</Link></SideNavItem>
-                    <SideNavItem><Link to="/products/health">Health</Link></SideNavItem>
-                    <SideNavItem><Link to="/products/grocery">Grocery</Link></SideNavItem>
-                    <SideNavItem><Link to="/products/kitchen">Kitchen</Link></SideNavItem>
-                    <SideNavItem><Link to="/products/pets">Pets</Link></SideNavItem>
+                    <li><Link to="/home">Home</Link></li>
+                    <li><Link to="/cart">Cart</Link></li>
+                    <SideNavItem divider />
+                    <li className="subheader">Categories</li>
+                    <div className="categories">
+                        <li><Link to="/products/baby">Baby</Link></li>
+                        <li><Link to="/products/beauty">Beauty</Link></li>
+                        <li><Link to="/products/health">Health</Link></li>
+                        <li><Link to="/products/grocery">Grocery</Link></li>
+                        <li><Link to="/products/kitchen">Kitchen</Link></li>
+                        <li><Link to="/products/pets">Pets</Link></li>
+                    </div>
+                </div>
+
+                <div className="footer">
+                    <div>
+                        <p>Contact Us!</p>
+                    </div>
                 </div>
             </SideNav>
         )
