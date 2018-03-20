@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../Assets/css/main.css';
 import axios from 'axios';
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch} from 'react-router-dom'
 
 import Nav from './Nav'
 import Cart from './Cart'
@@ -53,6 +53,21 @@ class App extends Component {
       
   }
 
+  submitSearch = (event) => {
+    event.preventDefault();
+    console.log(event.target.searchBox.value)
+    let query = event.target.searchBox.value
+    axios.get(`http://localhost:8080/searchData?keyword=${query}+fair%20trade+organic`)
+      .then((response) => {
+        this.setState({
+          searchResults: response.data,
+          keywords: query,
+          fireRedirect: true
+        })
+      })
+    // this.event.target.value = '' do later 
+  }
+
   // componentWillMount() {
   //   axios.get(`http://localhost:8080/getcart`)
   //     .then((response) => {
@@ -85,24 +100,6 @@ class App extends Component {
   }
 
 
-  submitSearch = (event) => {
-    event.preventDefault();
-    console.log(event.target.searchBox.value)
-    let query = event.target.searchBox.value
-    axios.get(`http://localhost:8080/searchData?keyword=${query}+fair%20trade+organic`)
-      .then((response) => {
-        this.setState({
-          searchResults: response.data,
-          keywords: query,
-          fireRedirect: true
-        })
-        // return <Redirect to={`/search/${query}`} />
-        // console.log(this.state)
-      })
-      // this.event.target.value = '' do later 
-  }
-
-
   addToCart = (item) => {
     console.log('cart function getting called')
     console.log(item)
@@ -115,20 +112,18 @@ class App extends Component {
       cartQty: this.state.cartQty + 1
     });
   }
+  
   // onClick of Clear button, the entire item is removed from cart. 
   // the price of the removed item is subtracted from the total.
   removeItem = (cartIndex) => {
-
     let newCartArr = [...this.state.cart];
     newCartArr.splice(cartIndex, 1)
-
     this.setState({
       cart: newCartArr,
       cartQty: this.state.cartQty - 1,
       total: this.state.total - newCartArr
     })
   }
-
 
 
   render() {

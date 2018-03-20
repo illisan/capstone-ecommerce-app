@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Table, Button } from 'react-materialize'
+import { Row, Table, Button, Container } from 'react-materialize'
 import axios from 'axios';
 
 let total
@@ -88,7 +88,7 @@ class Cart extends Component {
             getTotal = "Your Cart Is Currently Empty"
         }
         return (
-            <div>
+            <Container>
                 <h2>Shopping Cart</h2>
                 <Row >
                     {this.props.cart.map(this.renderCart)}
@@ -99,7 +99,7 @@ class Cart extends Component {
                         <th data-field="price">CDN$ {getTotal}</th>
                     </tr>
                 </Table>
-            </div>
+            </Container>
                 )
             }
 }

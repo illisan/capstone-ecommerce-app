@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardTitle, Row, Col} from 'react-materialize'
+import { Card, CardTitle, Row, Col, Container} from 'react-materialize'
 import { Link } from 'react-router-dom'
  
 class ProductList extends Component {
@@ -33,12 +33,12 @@ class ProductList extends Component {
 
     render() {
         return (
-            <div>
+            <Container>
                 <h2>{this.props.category} Items</h2>
                 <Row className="masonry">
                     {this.props.productList.map(this.renderChild)}
                 </Row>
-            </div>
+            </Container>
         )
     }
 }

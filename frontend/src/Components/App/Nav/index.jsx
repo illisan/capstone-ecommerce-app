@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Icon, SideNav, SideNavItem, Button } from 'react-materialize'
+import { Icon, SideNav, SideNavItem } from 'react-materialize'
 import { Link, Redirect} from "react-router-dom"
 
 
 class Nav extends Component {
-
 
 
     render() {
@@ -12,9 +11,9 @@ class Nav extends Component {
         const {from} = this.props.location || "/"
         return (
             <SideNav id="slide-out" className="side-nav fixed" trigger={<p> </p>}>
-                
                 <form className="searchBox" onSubmit={(event) => { this.props.submitSearch(event) }}>
-                    <input name ="searchBox" className="searchBar" placeholder="Search"/>
+                    <Icon medium>search</Icon>
+                    <input name="searchBox" className="searchBar" placeholder="Search"/>
                 </form>
                 {this.props.fireRedirect && (
                     <Redirect to ={from || "/search/:keywords"} />

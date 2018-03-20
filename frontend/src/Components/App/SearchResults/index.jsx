@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardTitle, Row, Col } from 'react-materialize'
+import { Card, CardTitle, Row, Col, Container } from 'react-materialize'
 import { Link } from 'react-router-dom'
 
 class SearchResults extends Component {
@@ -25,12 +25,12 @@ class SearchResults extends Component {
         // console.log(this.props.searchResults)
         // console.log(this.props.keywords)
         return (
-            <div>
+            <Container>
                 <h2>Search Results for "{this.props.keywords}"</h2>
                 <Row className="masonry">
                     {this.props.searchResults.map(this.renderSearch)}
                 </Row>
-            </div>
+            </Container>
         )
     }
 }

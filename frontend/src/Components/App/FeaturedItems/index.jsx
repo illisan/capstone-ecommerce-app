@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardTitle, Row, Col } from 'react-materialize'
+import { Card, CardTitle, Row, Col, Container } from 'react-materialize'
 import { Link } from "react-router-dom"
 
 class FeaturedItems extends Component {
@@ -20,12 +20,12 @@ class FeaturedItems extends Component {
  
     render() {
         return (
-            <div>
+            <Container>
                 <h1>Featured Items</h1>
                 <Row className="masonry">
                     {this.props.featuredItems.map(this.renderFeatItem)}
                 </Row>
-            </div>
+            </Container>
         )
     }
 }
