@@ -18,6 +18,8 @@ class App extends Component {
       cart: [],
       featuredItems: [],
       cartQty: 0,
+      total:0,
+      searchProducts:[],
     }
   }
 
@@ -28,36 +30,41 @@ class App extends Component {
           featuredItems: response.data
         })
       })
-    // axios.get(`http://localhost:8080/getcart`)
-    //   .then((response) => {
-    //     console.log(response.data)
-    //     this.setState({
-    //       cart: response.data.cart
-    //     })
-    //   })
 
   }
 
-  componentWilMount() {
-    axios.get(`http://localhost:8080/getcart`)
+  searchItems=(keywords)=>{
+    console.log("search search search")
+    console.log(keywords)
+    axios.get(`http://localhost:8080/searchData?keyword=${keywords}`)
       .then((response) => {
-        console.log(response.data)
         this.setState({
-          cart: response.data.cart
+          searchProducts: response.data
         })
+        console.log(response.data)
       })
   }
 
-  componentDidUpdate() {
-    axios.post('http://localhost:8080/postcart', {
-      cart: this.state.cart
-    })
-      .then((response) => {
-        if (response.data.success) {
-          console.log('Cart Items Saved')
-        }
-      })
-  }
+  // componentWillMount() {
+  //   axios.get(`http://localhost:8080/getcart`)
+  //     .then((response) => {
+  //       console.log(response.data)
+  //       this.setState({
+  //         cart: response.data.cart
+  //       })
+  //     })
+  // }
+
+  // componentDidUpdate() {
+  //   axios.post('http://localhost:8080/postcart', {
+  //     cart: this.state.cart
+  //   })
+  //     .then((response) => {
+  //       if (response.data.success) {
+  //         console.log('Cart Items Saved')
+  //       }
+  //     })
+  // }
 
   refreshProducts = (category) => {
     axios.get(`http://localhost:8080/products/${category}`)
@@ -82,7 +89,8 @@ class App extends Component {
       cartQty: this.state.cartQty + 1
     });
   }
-
+// onClick of Clear button, the entire item is removed from cart. 
+// the price of the removed item is subtracted from the total.
   removeItem = (cartIndex) => {
 
     let newCartArr = [...this.state.cart];
@@ -90,15 +98,18 @@ class App extends Component {
 
     this.setState({
       cart: newCartArr,
-      cartQty: this.state.cartQty - 1
+      cartQty: this.state.cartQty - 1,
+      total: this.state.total - newCartArr
     })
   }
+
+  
 
   render() {
     return (
       <div className="App">
         <Nav
-          searchCategory={this.searchCategory} />
+          search={this.searchItems} />
         <main>
           <header className="App-header">
             <img className="bbLogo responsive-img" alt="" src="../../../bb_logo.png" />
@@ -123,6 +134,7 @@ class App extends Component {
               <Route exact path='/cart' render={(props) => {
                 return <Cart
                   cart={this.state.cart}
+                  total={this.state.total}
                   removeItem={this.removeItem}
                   {...props}
                 />

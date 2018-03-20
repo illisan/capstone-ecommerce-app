@@ -9,7 +9,8 @@ class Cart extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            cart: (this.props.cart)
+            cart: (this.props.cart),
+            total: 0
         }
         console.log(this.props.cart)
     }
@@ -35,6 +36,17 @@ class Cart extends Component {
     //         })
     // }
 
+    // getTotal = () => {
+    //     let total = this.state.cart.reduce((sum, item) => {
+    //         return sum += Number(item[0].Offers[0].Offer[0].OfferListing[0].Price[0].Amount[0]) / 100
+    //     }, 0)
+    //     if (total === 0) {
+    //         total = "Your Cart Is Empty :("
+    //     }
+    //     this.setState({
+    //         total: total
+    //     })
+    // }
 
     renderCart = (item, i) => (
 
@@ -58,17 +70,24 @@ class Cart extends Component {
 
 
     render() {
-
-        let getTotal =
-            this.state.cart.reduce((sum, item) => {
-                return sum += (Number(item[0].Offers[0].Offer[0].OfferListing[0].Price[0].Amount[0]))
-            }, 0)
+        // console.log(this.props.cart)
+    //    let getTotal= this.props.cart.forEach((item) => {
+    //         //console.log(product)
+    //         if (getTotal === 0) {
+    //             getTotal = "Your Cart Is Empty :("
+    //         }
+    //         this.setState({
+    //             total: this.state.total += Number(item[0].Offers[0].Offer[0].OfferListing[0].Price[0].Amount[0]) / 100
+    //         })
+    //     })
+        let getTotal=
+        this.state.cart.reduce((sum, item) => {
+            return sum += Number(item[0].Offers[0].Offer[0].OfferListing[0].Price[0].Amount[0]) / 100
+        }, 0)
         if (getTotal === 0) {
             getTotal = "Your Cart Is Empty :("
         }
-
         return (
-
             <div>
                 <h2>This is your cart</h2>
                 <Row >
@@ -76,15 +95,13 @@ class Cart extends Component {
                 </Row>
                 <Table>
                     <tr>
-                        <td>Cart Total:</td>
-                        <td>{getTotal}</td>
+                        <th data-field="id">Cart Total</th>
+                        <th data-field="price">CDN$ {getTotal}</th>
                     </tr>
                 </Table>
             </div>
-
-        )
-
-    }
+                )
+            }
 }
 
 

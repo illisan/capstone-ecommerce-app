@@ -57,7 +57,7 @@ class FeaturedDetails extends Component {
                 <div>
                     <Row>
                         <h4>{similarItems}</h4>
-                    </Row>
+                    </Row> 
                 </div>
             </div>
         )

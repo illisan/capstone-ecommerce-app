@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Icon, SideNav, SideNavItem} from 'react-materialize'
-import { Link, } from "react-router-dom"
+import { Icon, SideNav, SideNavItem, Button} from 'react-materialize'
+import { Link, } from "react-router-dom" 
 
 //tell the api to search multiple categories (search indeces)
 //on component 
@@ -11,7 +11,8 @@ class Nav extends Component {
     render() {
         return (
             <SideNav id="slide-out" className="side-nav fixed" trigger={<p> </p>}>
-                <SideNavItem className="searchBox"><Icon>search</Icon><input type="text" placeholder="Search" /></SideNavItem>
+                <SideNavItem className="searchBox"><input ref={self => {this.inputBox = self}} type="text" placeholder="Search"/></SideNavItem><br/>
+                <Button onClick={() => {this.props.search(this.inputBox.value)}}>search</Button>
                 <div className="navLinks">
                     <SideNavItem><Link to="/home">Home</Link></SideNavItem>
                     <SideNavItem><Link to="/cart">Cart</Link></SideNavItem>

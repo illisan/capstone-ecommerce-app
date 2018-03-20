@@ -4,7 +4,7 @@ const port = process.argv[2] || 8080
 const bodyParser = require('body-parser')
 const amazon = require('amazon-product-api')  //requireing amazon api library.
 const router = express.Router()
-const fs = require('fs')
+//const fs = require('fs')
 
 
 app.use((req, res, next) => {  // CORS
@@ -17,23 +17,23 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-fs.readFile('cart.json', (err, data) => {
-    if (data) {
-        cart = JSON.parse(data)
-    }
-})
+// fs.readFile('cart.json', (err, data) => {
+//     if (data) {
+//         cart = JSON.parse(data)
+//     }
+// })
 
-app.get('/getcart', (req, res) => {
-    res.send(cart)
-})
+// app.get('/getcart', (req, res) => {
+//     res.send(cart)
+// })
 
-app.post('/postcart', (req, res) => {
-    // console.log(res)
-    let newItem = req.body
-    cart = newItem
-    fs.writeFile('cart.json', JSON.stringify(cart))
-    res.json({ success: true })
-})
+// app.post('/postcart', (req, res) => {
+//     // console.log(res)
+//     let newItem = req.body
+//     cart = newItem
+//     fs.writeFile('cart.json', JSON.stringify(cart))
+//     res.json({ success: true })
+// })
 
 
 var client = amazon.createClient({
@@ -47,13 +47,29 @@ var client = amazon.createClient({
 //FEATURED ITEMS 
 
 app.get('/featuredData', (req, res) => {
-    // req.query.searchIndex
+    req.query.searchIndex
     client.itemSearch({
         searchIndex: 'Grocery',
-        responseGroup: 'ItemAttributes,Images,OfferListings,Reviews, Large',
+        responseGroup: 'ItemAttributes,Images,Offers',
         keywords: 'fair trade, eco',
-        sort: 'salesrank',
-        IncludeReviewSummary: true,
+        domain: 'webservices.amazon.ca',
+    }).then(function (results) {
+        res.json(results);
+    }).catch(function (err) {
+        console.log(err);
+    });
+})
+
+app.get('/searchData', (req, res) => {
+    console.log(req.query.keyword)
+    let userInput = req.query.keyword
+    req.query.searchIndex
+    client.itemSearch({
+        searchIndex: 'All',
+        responseGroup: 'ItemAttributes,Images,Offers',
+        // keywords: ('fair trade, eco'+ ', ' + userInput),
+        keywords: userInput.split(' ').join(', '),
+        //IncludeReviewSummary: true,
         domain: 'webservices.amazon.ca'
     }).then(function (results) {
         res.json(results);
@@ -75,9 +91,8 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'Baby',
-                    responseGroup: 'ItemAttributes,Images,OfferListings,Reviews',
-                    keywords: 'fair trade, eco',
-                    IncludeReviewSummary: true,
+                    responseGroup: 'ItemAttributes,Images,Offers',
+                    keywords: 'organic',
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {
                     res.json(results);
@@ -89,8 +104,8 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'Beauty',
-                    responseGroup: 'ItemAttributes,Images,OfferListings,Reviews',
-                    keywords: 'fair trade, eco',
+                    responseGroup: 'ItemAttributes,Images,Offers',
+                    keywords: 'organic makeup',
                     IncludeReviewSummary: true,
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {
@@ -103,9 +118,8 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'HealthPersonalCare',
-                    responseGroup: 'ItemAttributes,Images,OfferListings,Reviews',
-                    keywords: 'fair trade, eco',
-                    IncludeReviewSummary: true,
+                    responseGroup: 'ItemAttributes,Images,Offers',
+                    keywords: 'organic, supplement',
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {
                     res.json(results);
@@ -117,9 +131,8 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'Grocery',
-                    responseGroup: 'ItemAttributes,Images,OfferListings,Reviews',
-                    keywords: 'fair trade, eco',
-                    IncludeReviewSummary: true,
+                    responseGroup: 'ItemAttributes,Images,Offers',
+                    keywords: 'organic, food',
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {
                     res.json(results);
@@ -131,9 +144,8 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'Kitchen',
-                    responseGroup: 'ItemAttributes,Images,OfferListings,Reviews',
-                    keywords: 'fair trade, eco',
-                    IncludeReviewSummary: true,
+                    responseGroup: 'ItemAttributes,Images,Offers',
+                    keywords: 'eco friendly',
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {
                     res.json(results);
@@ -145,9 +157,8 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'PetSupplies',
-                    responseGroup: 'ItemAttributes,Images,OfferListings,Reviews',
-                    keywords: 'fair trade, eco',
-                    IncludeReviewSummary: true,
+                    responseGroup: 'ItemAttributes,Images,Offers',
+                    keywords: 'organic, eco',
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {
                     res.json(results);
