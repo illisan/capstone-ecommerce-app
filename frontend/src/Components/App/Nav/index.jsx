@@ -33,12 +33,6 @@ class Nav extends Component {
                         <li><Link to="/products/pets">Pets</Link></li>
                     </div>
                 </div>
-
-                <div className="footer">
-                    <div>
-                        <p>Contact Us!</p>
-                    </div>
-                </div>
             </SideNav>
         )
     }

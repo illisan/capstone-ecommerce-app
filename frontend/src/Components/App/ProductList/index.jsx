@@ -3,7 +3,7 @@ import { Card, CardTitle, Row, Col, Container} from 'react-materialize'
 import { Link } from 'react-router-dom'
  
 class ProductList extends Component {
-
+ 
     componentWillMount() {
         this.props.refreshProducts(this.props.category);
     }

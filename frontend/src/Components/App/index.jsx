@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../../Assets/css/main.css';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom'
+import { Button } from 'react-materialize'
+
 
 import Nav from './Nav'
 import Cart from './Cart'
@@ -11,7 +13,8 @@ import ProductList from './ProductList'
 import ProductDetails from './ProductDetails'
 import SearchResults from './SearchResults'
 import SearchDetails from './SearchDetails'
-// import ParallaxDisplay from './Parallax'
+import FooterDisplay from './Footer'
+
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +32,7 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get(`http://localhost:8080/featuredData`)
       .then((response) => {
         this.setState({
@@ -86,7 +89,7 @@ class App extends Component {
         })
       })
   }
- 
+
 
   addToCart = (item) => {
     console.log('cart function getting called')
@@ -100,40 +103,44 @@ class App extends Component {
       price: itemPrice,
     })
       .then((response) => {
+        console.log(response)
         console.log("Success!")
-      })
-    //this.state.cart.unshift(item);
-    console.log(this.state.cart)
 
-    // this.setState({
-    //   cart: this.state.cart.unshift(response.data),
-    //   cartQty: this.state.cartQty + 1
-    // });
+        axios.get(`http://localhost:8080/cart`)
+          .then((response) => {
+            console.log(response.data)
+            this.setState({
+              cart: response.data,
+              cartQty: response.data.length
+            })
+          })
+      })
+    console.log(this.state.cart)
   }
 
   // onClick of Clear button, the entire item is removed from cart. 
   // the price of the removed item is subtracted from the total.
-  
-  
+
+
   removeItem = (cartIndex) => {
-    let newCartArr = [...this.state.cart].map((item) =>{
-      return item.title})
-    //newCartArr.splice(cartIndex, 1)
-    //let itemTitle = item[0].title
-    // let priceArr = this.props.cart.map((item) => {
-    //   return item.price
-    // })
-    console.log(this.state.cart)
-    console.log(cartIndex.title)
-    axios.post("http://localhost:8080/clear", {
-      title: cartIndex.title
+    let newCartArr = [...this.state.cart].map((item) => {
+      return item.id
     })
-      .then((response) => {
-        this.setState({
-          cart: newCartArr,
-          cartQty: this.state.cartQty - 1
-        });
-      })
+    console.log(this.state.cart)
+    console.log(cartIndex.id)
+    axios.post("http://localhost:8080/clear", {
+      id: cartIndex.id
+    }).then((response) => {
+      console.log(response)
+      // axios.get(`http://localhost:8080/cart`)
+      //   .then((response) => {
+      //     console.log(response.data)
+          this.setState({
+            cart: response.data,
+            cartQty: response.data.length
+          })
+        // })
+    })
 
   }
 
@@ -147,18 +154,16 @@ class App extends Component {
           fireRedirect={this.state.fireRedirect}
           cartQty={this.state.cartQty}
         />
+
         <main>
           <header className="App-header">
             <img className="bbLogo responsive-img" alt="" src="../../../bb_logo.png" />
+            <Button>Log In</Button>
           </header>
-          
-            <Switch>
-            {/* <Route exact path='/home' render={(props) => {
-              return <ParallaxDisplay />
-            }
-            } /> */}
+
+          <Switch>
             <section>
-           
+
               <Route exact path='/home' render={(props) => {
                 return <FeaturedItems
                   featuredItems={this.state.featuredItems}
@@ -215,7 +220,8 @@ class App extends Component {
               }
               } />
             </section>
-            </Switch>
+          </Switch>
+          <FooterDisplay />
         </main>
       </div>
     );

@@ -63,14 +63,14 @@ main {
   header.App-header {
     background-color: #5a898f;
     position:fixed;
-    z-index: 2;
+    z-index: 99;
     top:0;
     width:100%;
   }
 
   section {
     padding-top:9%;
-    // background: #a3e2ea;
+    background: #a3e2ea;
     // bottom:0;
   }
 
@@ -84,3 +84,4 @@ main {
 @import './partials/ProductList';
 @import './partials/Search';
 @import './partials/DetailsPage';
+@import './partials/Footer';

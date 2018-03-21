@@ -2,10 +2,25 @@ import React, { Component } from 'react';
 import { Row, Table, Button, Container, Icon, Modal, Input } from 'react-materialize'
 import axios from 'axios';
 
-let total
+
 
 
 class Cart extends Component {
+
+    // componentDidUpdate(nextProps, nextState) {
+    //     console.log(this.props)
+    //     console.log(nextProps)
+    //     console.log(this.props.cart)
+    //     if (nextState.cart !== this.state.cart) {
+
+    //         this.setState({
+    //             cart: nextState.cart
+    //         })
+           
+    //     }
+   
+    // }
+
     constructor(props) {
         super(props)
         this.state = {
@@ -16,6 +31,7 @@ class Cart extends Component {
     }
 
     renderCart = (item, i) => (
+
         <div>
             <Table>
                 <thead>
@@ -27,7 +43,7 @@ class Cart extends Component {
                 <tbody>
                     <tr>
                         <td>{this.props.cart[i].title}</td>
-                        <td>{this.props.cart[i].price /100}</td>
+                        <td>{this.props.cart[i].price / 100}</td>
                         <td><Button className="clearBtn" onClick={() => { this.props.removeItem(item) }}><Icon>clear</Icon></Button></td>
                     </tr>
                 </tbody>
@@ -36,24 +52,23 @@ class Cart extends Component {
 
 
     render() {
-        console.log(this.props.cart)
         // console.log(this.props.cart)
-    //    let getTotal= this.props.cart.forEach((item) => {
-    //         //console.log(product)
-    //         if (getTotal === 0) {
-    //             getTotal = "Your Cart Is Empty :("
-    //         }
-    //         this.setState({
-    //             total: this.state.total += Number(item[0].Offers[0].Offer[0].OfferListing[0].Price[0].Amount[0]) / 100
-    //         })
-    //     })
-
-        let priceArr = this.props.cart.map((item)=>{
+        //    let getTotal= this.props.cart.forEach((item) => {
+        //         //console.log(product)
+        //         if (getTotal === 0) {
+        //             getTotal = "Your Cart Is Empty :("
+        //         }
+        //         this.setState({
+        //             total: this.state.total += Number(item[0].Offers[0].Offer[0].OfferListing[0].Price[0].Amount[0]) / 100
+        //         })
+        //     }) 
+        console.log(this.props.cart)
+        let priceArr = this.props.cart.map((item) => {
             return item.price
         })
         console.log(priceArr)
-       let cartTotal = priceArr.reduce((sum, item) => {
-                return sum + item / 100
+        let cartTotal = priceArr.reduce((sum, item) => {
+            return sum + item / 100
         }, 0)
         if (cartTotal === 0) {
             cartTotal = "Your Cart Is Currently Empty"
@@ -109,10 +124,9 @@ class Cart extends Component {
                         </Modal>
                     </Row>
                 </Modal>
-                
             </Container>
-                )
-            }
+        )
+    }
 }
 
 

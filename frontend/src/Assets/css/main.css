@@ -41,18 +41,22 @@ img.bbLogo {
 header.App-header {
   background-color: #5a898f;
   position: fixed;
-  z-index: 2;
+  z-index: 99;
   top: 0;
   width: 100%; }
 
 section {
-  padding-top: 9%; }
+  padding-top: 9%;
+  background: #a3e2ea; }
 
 .card-content {
   background: #fcfcfc; }
 
 .col.child {
   background: #a3e2ea; }
+
+.parallax-container {
+  z-index: 2; }
 
 .searchBox {
   display: flex;

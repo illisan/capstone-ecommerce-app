@@ -9,7 +9,7 @@ const router = express.Router()
 
 const knex = require('knex')({ //establish connection between knex and bookshelf.
     client: 'pg',
-    connection: {
+    connection: { 
         database: 'capstone_cart',
         user: '',
         password: ''
@@ -50,19 +50,21 @@ app.post ('/cart', (req, res) => {
 app.get('/cart', (req, res) => {
     Item.fetchAll()
         .then(self => {
-            res.json(self.models.map(item => item.attributes))
+            res.send(self.models.map(item => item.attributes))
+            //res.json(self.models.map(item => item.attributes))
         })
 })
 
-
+ 
 //DELETE
 app.post('/clear', (req, res) => {
-    console.log(req.bod)
-    Item.where({ title: req.body.title })
+    console.log(req.body.id)
+    Item.where({ id: req.body.id })
         .destroy()
         .then((item) => {
             Item.fetchAll()
                 .then(self => {
+                    console.log('oh wow')
                     res.json(self.models.map(item => item.attributes))
                 })
         })

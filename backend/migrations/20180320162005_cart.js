@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
     return knex.schema.createTableIfNotExists('cart', (table) => {
         table.increments('id').primary()
-        table.string('title').unique().notNullable()
+        table.string('title').notNullable()
         table.integer('price').notNullable()
     })
 };
