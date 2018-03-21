@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardTitle, Row, Col, Container} from 'react-materialize'
 import { Link } from "react-router-dom"
+import ParallaxDisplay from '../Parallax'
 
 class FeaturedItems extends Component {
 
@@ -21,6 +22,7 @@ class FeaturedItems extends Component {
     render() {
         return (
             <div>
+                <ParallaxDisplay/>
             <Container featItems>
                 <h1>Featured Items</h1>
                 <Row className="masonry">
