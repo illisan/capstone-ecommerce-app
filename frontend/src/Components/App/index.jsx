@@ -11,6 +11,7 @@ import ProductList from './ProductList'
 import ProductDetails from './ProductDetails'
 import SearchResults from './SearchResults'
 import SearchDetails from './SearchDetails'
+import ParallaxDisplay from './Parallax'
 
 class App extends Component {
   constructor(props) {
@@ -150,9 +151,15 @@ class App extends Component {
           <header className="App-header">
             <img className="bbLogo responsive-img" alt="" src="../../../bb_logo.png" />
           </header>
-          <section>
+          
             <Switch>
-              <Route exact path='/home' render={(props) => {
+            <Route exact path='/home' render={(props) => {
+              return <ParallaxDisplay />
+            }
+            } />
+            <section>
+           
+              <Route exact path='/' render={(props) => {
                 return <FeaturedItems
                   featuredItems={this.state.featuredItems}
                   {...props}
@@ -207,8 +214,8 @@ class App extends Component {
                   {...props} />
               }
               } />
+            </section>
             </Switch>
-          </section>
         </main>
       </div>
     );
