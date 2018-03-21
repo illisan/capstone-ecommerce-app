@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, SideNav, SideNavItem } from 'react-materialize'
+import { Icon, SideNav, SideNavItem, Badge } from 'react-materialize'
 import { Link, Redirect} from "react-router-dom"
 
 
@@ -21,7 +21,7 @@ class Nav extends Component {
 
                 <div className="navLinks">
                     <li><Link to="/home">Home</Link></li>
-                    <li><Link to="/cart">Cart</Link></li>
+                    <li><Link to="/cart">Cart<Badge newIcon>{this.props.cartQty}</Badge></Link></li>
                     <SideNavItem divider />
                     <li className="subheader">Categories</li>
                     <div className="categories">

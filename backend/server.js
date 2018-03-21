@@ -4,7 +4,24 @@ const port = process.argv[2] || 8080
 const bodyParser = require('body-parser')
 const amazon = require('amazon-product-api')  //requireing amazon api library.
 const router = express.Router()
-//const fs = require('fs')
+
+
+
+const knex = require('knex')({ //establish connection between knex and bookshelf.
+    client: 'pg',
+    connection: {
+        database: 'capstone_cart',
+        user: '',
+        password: ''
+    }
+})
+
+
+const bookshelf = require('bookshelf')(knex) 
+
+const Item = bookshelf.Model.extend({ //Schema and model 
+    tableName: 'cart'
+})
 
 
 app.use((req, res, next) => {  // CORS
@@ -15,6 +32,25 @@ app.use((req, res, next) => {  // CORS
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+
+
+app.post ('/testtest', (req, res) => {
+
+    let newItem = new Item ({
+        title: "this is a titleeee",
+        price: 2334
+    })
+    newItem.save()
+        .then (
+            newItem => {
+                newItem.attributes
+            }
+        )
+    res.send ("endpoint reached")
+
+})
+
 
 
 // fs.readFile('cart.json', (err, data) => {

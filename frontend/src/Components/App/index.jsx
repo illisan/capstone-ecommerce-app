@@ -68,27 +68,6 @@ class App extends Component {
     // this.event.target.value = '' do later 
   }
 
-  // componentWillMount() {
-  //   axios.get(`http://localhost:8080/getcart`)
-  //     .then((response) => {
-  //       console.log(response.data)
-  //       this.setState({
-  //         cart: response.data.cart
-  //       })
-  //     })
-  // }
-
-  // componentDidUpdate() {
-  //   axios.post('http://localhost:8080/postcart', {
-  //     cart: this.state.cart
-  //   })
-  //     .then((response) => {
-  //       if (response.data.success) {
-  //         console.log('Cart Items Saved')
-  //       }
-  //     })
-  // }
-
   refreshProducts = (category) => {
     axios.get(`http://localhost:8080/products/${category}`)
       .then((response) => {
@@ -133,6 +112,7 @@ class App extends Component {
           search={this.searchItems}
           submitSearch={this.submitSearch}
           fireRedirect={this.state.fireRedirect}
+          cartQty={this.state.cartQty}
           />
         <main>
           <header className="App-header">
