@@ -11,7 +11,7 @@ body {
 $heading-color: #5a898f;
 $heading-font: 'Playfair Display', serif;
 
-$secHeading-color:#fcfcfc;
+$secHeading-color:#e75e62;
 $secHeading-font:'Oswald', sans-serif;
 $secHeading-font-weight: 400;
 
@@ -24,14 +24,24 @@ h1{
 }
 
 
-h2,h3,{
+h2 {
   color: $secHeading-color;
   font-family: $secHeading-font;
   font-weight: $secHeading-font-weight;
   padding-top: 2rem;
+  letter-spacing: 3px;
 }
 
-h4,h5, {
+h3 {
+  color: #fcfcfc;
+  padding-top:3rem;
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+
+}
+
+h3,h4,h5, {
   font-family: $secHeading-font;
 }
 

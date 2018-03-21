@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../Assets/css/main.css';
 import axios from 'axios';
-import { Route, Switch} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import Nav from './Nav'
 import Cart from './Cart'
@@ -35,7 +35,15 @@ class App extends Component {
           featuredItems: response.data
         })
       })
-
+    axios.get(`http://localhost:8080/cart`)
+      .then((response) => {
+        console.log(response.data)
+        this.setState({
+          cart: response.data,
+          cartQty: response.data.length
+        })
+      })
+    console.log(this.state.cart)
   }
 
   searchItems = (keywords) => {
@@ -50,7 +58,7 @@ class App extends Component {
         console.log(response.data)
         console.log(this.state.keywords)
       })
-      
+
   }
 
   submitSearch = (event) => {
@@ -65,7 +73,7 @@ class App extends Component {
           fireRedirect: true
         })
       })
-    // this.event.target.value = '' do later 
+    // event.target.saerchBox.value = ""
   }
 
   refreshProducts = (category) => {
@@ -77,31 +85,55 @@ class App extends Component {
         })
       })
   }
-
+ 
 
   addToCart = (item) => {
     console.log('cart function getting called')
     console.log(item)
-
-    this.state.cart.unshift(item);
+    let itemTitle = item[0].ItemAttributes[0].Title[0]
+    let itemPrice = item[0].Offers[0].Offer[0].OfferListing[0].Price[0].Amount[0]
+    console.log(itemTitle)
+    console.log(itemPrice)
+    axios.post("http://localhost:8080/cart", {
+      title: itemTitle,
+      price: itemPrice,
+    })
+      .then((response) => {
+        console.log("Success!")
+      })
+    //this.state.cart.unshift(item);
     console.log(this.state.cart)
 
-    this.setState({
-      cart: this.state.cart,
-      cartQty: this.state.cartQty + 1
-    });
+    // this.setState({
+    //   cart: this.state.cart.unshift(response.data),
+    //   cartQty: this.state.cartQty + 1
+    // });
   }
-  
+
   // onClick of Clear button, the entire item is removed from cart. 
   // the price of the removed item is subtracted from the total.
+  
+  
   removeItem = (cartIndex) => {
-    let newCartArr = [...this.state.cart];
-    newCartArr.splice(cartIndex, 1)
-    this.setState({
-      cart: newCartArr,
-      cartQty: this.state.cartQty - 1,
-      total: this.state.total - newCartArr
+    let newCartArr = [...this.state.cart].map((item) =>{
+      return item.title})
+    //newCartArr.splice(cartIndex, 1)
+    //let itemTitle = item[0].title
+    // let priceArr = this.props.cart.map((item) => {
+    //   return item.price
+    // })
+    console.log(this.state.cart)
+    console.log(cartIndex.title)
+    axios.post("http://localhost:8080/clear", {
+      title: cartIndex.title
     })
+      .then((response) => {
+        this.setState({
+          cart: newCartArr,
+          cartQty: this.state.cartQty - 1
+        });
+      })
+
   }
 
 
@@ -113,7 +145,7 @@ class App extends Component {
           submitSearch={this.submitSearch}
           fireRedirect={this.state.fireRedirect}
           cartQty={this.state.cartQty}
-          />
+        />
         <main>
           <header className="App-header">
             <img className="bbLogo responsive-img" alt="" src="../../../bb_logo.png" />

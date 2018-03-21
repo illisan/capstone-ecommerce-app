@@ -34,7 +34,7 @@ class ProductList extends Component {
     render() {
         return (
             <Container>
-                <h2>{this.props.category} Items</h2>
+                <h3>{this.props.category} Items</h3>
                 <Row className="masonry">
                     {this.props.productList.map(this.renderChild)}
                 </Row>

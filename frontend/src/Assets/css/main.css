@@ -10,13 +10,21 @@ h1 {
   padding-top: 5%;
   margin-left: 2rem; }
 
-h2, h3 {
-  color: #fcfcfc;
+h2 {
+  color: #e75e62;
   font-family: "Oswald", sans-serif;
   font-weight: 400;
-  padding-top: 2rem; }
+  padding-top: 2rem;
+  letter-spacing: 3px; }
 
-h4, h5 {
+h3 {
+  color: #fcfcfc;
+  padding-top: 3rem;
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 3px; }
+
+h3, h4, h5 {
   font-family: "Oswald", sans-serif; }
 
 main {
@@ -91,6 +99,13 @@ input.searchBar {
 .categories li {
   margin-bottom: 1rem; }
 
+button.btn.clearBtn {
+  height: 2.3rem;
+  width: 1rem; }
+
+span.badge.new {
+  background: #e75e62; }
+
 .masonry {
   margin: 1.5em 0;
   padding: 0;
@@ -126,24 +141,24 @@ input.searchBar {
 
 .priceBox {
   margin: 0 5% 0 5%;
-  background: #e9d227;
   padding: 5%; }
-
-img.productImg {
-  border: solid;
-  border-width: 2rem;
-  border-color: #a3e2ea; }
 
 h2.itemTitle, h4.othersHeader {
   padding-bottom: 2rem;
   margin-left: 2rem;
   padding-top: 2rem; }
 
-.itemDetails {
-  background: #e75e62; }
+h2.itemTitle {
+  letter-spacing: 2px; }
 
-.addBtn {
+.itemDetails {
+  background: white; }
+
+.btn, .addBtn {
   background: #5a898f;
-  height: 3rem; }
+  height: 5rem; }
+
+.btn:hover, .btn-large:hover {
+  background: #e9d277; }
 
 /*# sourceMappingURL=main.css.map */

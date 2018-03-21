@@ -26,7 +26,7 @@ class SearchResults extends Component {
         // console.log(this.props.keywords)
         return (
             <Container>
-                <h2>Search Results for "{this.props.keywords}"</h2>
+                <h3>Search Results for " {this.props.keywords} "</h3>
                 <Row className="masonry">
                     {this.props.searchResults.map(this.renderSearch)}
                 </Row>

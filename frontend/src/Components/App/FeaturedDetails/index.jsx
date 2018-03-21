@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Row, Button} from 'react-materialize'
 
 
-
+ 
 
 class FeaturedDetails extends Component {
 
@@ -48,7 +48,7 @@ class FeaturedDetails extends Component {
                         />   
                     </div> 
                     <div className="priceBox">
-                        <h3>{filterItem[0].Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h3>
+                        <h4>{filterItem[0].Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h4>
                         <p className>{filterItem[0].ItemAttributes[0].Feature[1]}</p>
                         <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(filterItem) }} >Add to Cart</Button>
                     </div> 

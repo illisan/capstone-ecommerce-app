@@ -34,42 +34,40 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-
-app.post ('/testtest', (req, res) => {
-
+//CREATE
+app.post ('/cart', (req, res) => {
     let newItem = new Item ({
-        title: "this is a titleeee",
-        price: 2334
+        title: req.body.title,
+        price: req.body.price,
     })
-    newItem.save()
-        .then (
-            newItem => {
-                newItem.attributes
-            }
-        )
-    res.send ("endpoint reached")
+    newItem.save() //save added task to databse table.
+        .then((item) => {
+            res.json(item.attributes)//attributes comes from the data, check with console.log(req.body). these are the actual task keys that are needed.
+        })
+})
 
+// READ 
+app.get('/cart', (req, res) => {
+    Item.fetchAll()
+        .then(self => {
+            res.json(self.models.map(item => item.attributes))
+        })
 })
 
 
+//DELETE
+app.post('/clear', (req, res) => {
+    console.log(req.bod)
+    Item.where({ title: req.body.title })
+        .destroy()
+        .then((item) => {
+            Item.fetchAll()
+                .then(self => {
+                    res.json(self.models.map(item => item.attributes))
+                })
+        })
 
-// fs.readFile('cart.json', (err, data) => {
-//     if (data) {
-//         cart = JSON.parse(data)
-//     }
-// })
-
-// app.get('/getcart', (req, res) => {
-//     res.send(cart)
-// })
-
-// app.post('/postcart', (req, res) => {
-//     // console.log(res)
-//     let newItem = req.body
-//     cart = newItem
-//     fs.writeFile('cart.json', JSON.stringify(cart))
-//     res.json({ success: true })
-// })
+})
 
 
 var client = amazon.createClient({
@@ -206,8 +204,6 @@ app.get('/products/:category', (req, res) => {
             console.log('Error, Page does not exist')
     }
 })
-
-
 
 
 
