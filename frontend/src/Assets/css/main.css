@@ -139,6 +139,11 @@ span.badge.new {
   page-break-inside: avoid;
   break-inside: avoid; }
 
+.card .card-image img {
+  width: 70%;
+  margin-left: 3rem;
+  padding-top: 2rem; }
+
 @media only screen and (min-width: 700px) {
   .masonry {
     column-count: 2; } }

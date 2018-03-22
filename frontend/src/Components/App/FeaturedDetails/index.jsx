@@ -16,7 +16,7 @@ class FeaturedDetails extends Component {
     
     //  let itemArr =  this.props.featuredItems.map((item) => {
     //         return item[0]
-    //  })
+    //  }) 
     //  console.log(itemArr)
 
     // let  changeItem = (index) => {
@@ -38,6 +38,15 @@ console.log(this.props.featuredItems[0])
         })
         console.log(filterItem)
         console.log(this.props.thisItem) 
+        let featuresArr = filterItem[0].ItemAttributes[0].Feature.map((title) => {
+            return <div key={title}>
+                <div>
+                    <ul>
+                        <li>{title}</li>
+                    </ul>
+                </div>
+            </div>
+        })
 
         // MAPPING OUT SIMILAR PRODUCTS ARRAY IN A CONDITIONAL: Doesn't show array
 
@@ -71,7 +80,7 @@ console.log(this.props.featuredItems[0])
                     </div> 
                     <div className="priceBox">
                         <h4>{filterItem[0].Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h4>
-                        <p className>{filterItem[0].ItemAttributes[0].Feature[1]}</p>
+                        <p className>{featuresArr}</p>
                         <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(filterItem) }} >Add to Cart</Button>
                     </div> 
                 </div>

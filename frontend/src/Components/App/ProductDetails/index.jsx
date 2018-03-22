@@ -6,8 +6,8 @@ import { Button } from 'react-materialize'
 class ProductDetails extends Component { 
 
     render() {
-        console.log(this.props.productList)
-        console.log(this.props.match.params)
+        // console.log(this.props.productList)
+        // console.log(this.props.match.params)
 
         let products = this.props.productList
         let params = this.props.match.params 
@@ -16,6 +16,17 @@ class ProductDetails extends Component {
             if (item.ASIN[0] === params.productASIN)
                 return item
         })
+
+        let featuresArr = filterItem[0].ItemAttributes[0].Feature.map((title) => {
+            return <div key={title}>
+                <div>
+                    <ul>
+                        <li>{title}</li>
+                    </ul>
+                </div>
+            </div>
+        })
+
         console.log(filterItem)
         let image = filterItem[0].ImageSets[0]
         return (
@@ -32,7 +43,7 @@ class ProductDetails extends Component {
                     </div>
                     <div className="priceBox">
                         <h4>{filterItem[0].Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h4>
-                        <p className>{filterItem[0].ItemAttributes[0].Feature[1]}</p>
+                        <p className>{featuresArr}</p>                        
                         <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(filterItem) }}>Add to Cart</Button>
                     </div>
                 </div>
