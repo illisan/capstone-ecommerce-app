@@ -7,7 +7,7 @@ class FeaturedItems extends Component {
     
 
     renderFeatItem = (item, i) => (
-        
+       
         <div key={i}>
             <Col className="child">
                 <Link to={`/home/${item.ASIN}`}>

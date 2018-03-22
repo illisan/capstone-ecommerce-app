@@ -63,6 +63,7 @@ main {
   header.App-header {
     background-color: #5a898f;
     position:fixed;
+    height:14rem;
     z-index: 99;
     top:0; 
     width:100%;
@@ -76,8 +77,8 @@ main {
   }
 
   section {
-    padding-top:9%;
-    padding-bottom:18%;
+    padding-top:8.8rem;;
+    padding-bottom:0;
     background: #a3e2ea;
     // bottom:0;
   }

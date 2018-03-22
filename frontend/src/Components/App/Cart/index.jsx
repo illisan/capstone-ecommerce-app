@@ -42,7 +42,8 @@ class Cart extends Component {
         console.log(priceArr)
         let cartTotal = priceArr.reduce((sum, item) => {
             return sum + item / 100
-        }, 0)
+        }, 0).toFixed(2)
+        
         if (cartTotal === 0) {
             cartTotal = "Your Cart Is Currently Empty"
         }

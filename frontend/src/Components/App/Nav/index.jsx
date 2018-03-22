@@ -10,7 +10,7 @@ class Nav extends Component {
 
         const {from} = this.props.location || "/"
         return (
-            <SideNav id="slide-out" className="side-nav fixed" trigger={<p> </p>}>
+            <SideNav id="slide-out" className="side-nav fixed" trigger={<Icon className="hamburger"small>menu</Icon>}>
                 <form className="searchBox" onSubmit={(event) => { this.props.submitSearch(event) }}>
                     <Icon medium>search</Icon>
                     <input name="searchBox" className="searchBar" placeholder="Search"/>

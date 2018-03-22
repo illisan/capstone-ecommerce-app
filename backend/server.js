@@ -86,7 +86,7 @@ app.get('/featuredData', (req, res) => {
     req.query.searchIndex
     client.itemSearch({
         searchIndex: 'Grocery',
-        responseGroup: 'ItemAttributes,Images,Offers',
+        responseGroup: 'ItemAttributes,Images,Offers,Reviews',
         keywords: 'fair trade, eco',
         domain: 'webservices.amazon.ca',
     }).then(function (results) {
@@ -102,7 +102,7 @@ app.get('/searchData', (req, res) => {
     req.query.searchIndex
     client.itemSearch({
         searchIndex: 'All',
-        responseGroup: 'ItemAttributes,Images,Offers',
+        responseGroup: 'ItemAttributes,Images,Offers,Reviews',
         // keywords: ('fair trade, eco'+ ', ' + userInput),
         keywords: userInput.split(' ').join(', '),
         //IncludeReviewSummary: true,
@@ -127,7 +127,7 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'Baby',
-                    responseGroup: 'ItemAttributes,Images,Offers',
+                    responseGroup: 'ItemAttributes,Images,Offers,Reviews',
                     keywords: 'organic',
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {
@@ -140,7 +140,7 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'Beauty',
-                    responseGroup: 'ItemAttributes,Images,Offers',
+                    responseGroup: 'ItemAttributes,Images,Offers,Reviews',
                     keywords: 'organic makeup',
                     IncludeReviewSummary: true,
                     domain: 'webservices.amazon.ca'
@@ -154,7 +154,7 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'HealthPersonalCare',
-                    responseGroup: 'ItemAttributes,Images,Offers',
+                    responseGroup: 'ItemAttributes,Images,Offers,Reviews',
                     keywords: 'organic, supplement',
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {
@@ -167,7 +167,7 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'Grocery',
-                    responseGroup: 'ItemAttributes,Images,Offers',
+                    responseGroup: 'ItemAttributes,Images,Offers,Reviews',
                     keywords: 'organic, food',
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {
@@ -180,7 +180,7 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'Kitchen',
-                    responseGroup: 'ItemAttributes,Images,Offers',
+                    responseGroup: 'ItemAttributes,Images,Offers,Reviews',
                     keywords: 'eco friendly',
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {
@@ -193,7 +193,7 @@ app.get('/products/:category', (req, res) => {
             result =
                 client.itemSearch({
                     searchIndex: 'PetSupplies',
-                    responseGroup: 'ItemAttributes,Images,Offers',
+                    responseGroup: 'ItemAttributes,Images,Offers,Reviews',
                     keywords: 'organic, eco',
                     domain: 'webservices.amazon.ca'
                 }).then(function (results) {

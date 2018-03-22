@@ -41,6 +41,7 @@ img.bbLogo {
 header.App-header {
   background-color: #5a898f;
   position: fixed;
+  height: 14rem;
   z-index: 99;
   top: 0;
   width: 100%;
@@ -52,12 +53,13 @@ button.btn.loginBtn {
   background: #e9d277; }
 
 section {
-  padding-top: 9%;
-  padding-bottom: 18%;
+  padding-top: 8.8rem;
+  padding-bottom: 0;
   background: #a3e2ea; }
 
 button.btn.checkoutBtn {
-  margin-top: 10%; }
+  margin-top: 10%;
+  margin-bottom: 30%; }
 
 i.material-icons.medium.clearCross {
   padding-top: 0; }
@@ -117,6 +119,9 @@ input.searchBar {
 .categories li {
   margin-bottom: 1rem; }
 
+.hamburger {
+  z-index: 99; }
+
 span.badge.new {
   background: #e75e62; }
 
@@ -163,7 +168,7 @@ span.badge.new {
 
 .priceBox {
   margin: 0 5% 0 5%;
-  padding: 5%; }
+  min-width: 40rem; }
 
 h2.itemTitle, h4.othersHeader {
   padding-bottom: 2rem;
@@ -182,6 +187,25 @@ h2.itemTitle {
 
 .btn:hover, .btn-large:hover {
   background: #e9d277; }
+
+.row.imgGrid {
+  display: grid;
+  grid-template-columns: 20rem 20rem;
+  grid-gap: 40%; }
+
+img.smallImgs {
+  width: 20rem; }
+
+.changeBtn {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 3rem;
+  cursor: pointer; }
+
+a.changeBtn.btnChild {
+  font-size: 3rem;
+  color: green;
+  text-decoration: underline; }
 
 footer.page-footer {
   background-color: #5a898f; }
