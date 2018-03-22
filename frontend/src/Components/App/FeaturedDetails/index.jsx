@@ -28,7 +28,7 @@ class FeaturedDetails extends Component {
     // })
 
 //   }
-console.log(this.props.featuredItems)
+console.log(this.props.featuredItems[0])
         let allItems = this.props.featuredItems
         let params = this.props.match.params
 

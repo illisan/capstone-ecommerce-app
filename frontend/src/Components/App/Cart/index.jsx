@@ -26,7 +26,7 @@ class Cart extends Component {
                     <tr>
                         <td>{this.props.cart[i].title}</td>
                         <td>CDN$ {this.props.cart[i].price / 100}</td>
-                        <td><Button className="clearBtn" onClick={() => { this.props.removeItem(item) }}><Icon>clear</Icon></Button></td>
+                        <td><Button className="clearBtn" onClick={() => { this.props.removeItem(item) }}><Icon medium className="clearCross">clear</Icon></Button></td>
                     </tr>
                 </tbody>
             </Table>
@@ -61,7 +61,7 @@ class Cart extends Component {
                 </Table>
 
                 <Modal
-                    trigger={<Button>Check Out</Button>}>
+                    trigger={<Button className="checkoutBtn">Check Out</Button>}>
                     <h4>Enter your username and password</h4>
                     <Button className="loginBtn">Proceed as Guest</Button>
                     <Row>

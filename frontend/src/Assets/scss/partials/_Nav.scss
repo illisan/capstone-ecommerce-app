@@ -57,11 +57,15 @@ input.searchBar {
     }
 }
 
-button.btn.clearBtn {
-    height: 2.3rem; 
-    width:1rem;
-}
+
 
 span.badge.new {
     background: #e75e62;
+}
+// nav ul li:hover {
+//    background-color: black;
+// }
+
+.navLinks li a:hover{
+    background-color:rgba(233, 210, 39, 0.7);
 }

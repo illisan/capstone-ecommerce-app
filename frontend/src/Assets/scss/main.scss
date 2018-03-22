@@ -56,7 +56,7 @@ main {
     }
 
   img.bbLogo{
-    width: 30%;
+    width: 30%;    
     margin-left:2rem;
   } 
   
@@ -64,7 +64,7 @@ main {
     background-color: #5a898f;
     position:fixed;
     z-index: 99;
-    top:0;
+    top:0; 
     width:100%;
     display: flex;
     align-items: center;
@@ -77,6 +77,7 @@ main {
 
   section {
     padding-top:9%;
+    padding-bottom:18%;
     background: #a3e2ea;
     // bottom:0;
   }

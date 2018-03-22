@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Footer } from 'react-materialize'
-
+ 
 
 class FooterDisplay extends Component {
 
@@ -8,21 +8,18 @@ class FooterDisplay extends Component {
         return (
             <div>
                 <Footer copyrights="&copy 2015 Copyright Text"
-                    moreLinks={
-                        <a className="grey-text text-lighten-4 right" href="#!">More Links</a>
-                    }
                     links={
                         <ul>
-                            <li><a className="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                            <li><a className="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                            <li><a className="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                            <li><a className="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                            <li><a className="grey-text text-lighten-3" href="#!"><i class="fab fa-facebook-square fa-lg"></i></a></li>
+                            <li><a className="grey-text text-lighten-3" href="#!"><i class="fab fa-instagram fa-lg"></i></a></li>
+                            <li><a className="grey-text text-lighten-3" href="#!">info@buybetter.com</a></li>
+                            <li><a className="grey-text text-lighten-3" href="#!">604-123-4567</a></li>
                         </ul>
                     }
                     className='example'
                 >
-                    <h5 className="white-text">Footer Content</h5>
-                    <p className="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    <h5 className="white-text">Contact Us</h5>
+                    <p className="grey-text text-lighten-4">Thank you for visiting our site, stay in touch!</p>
                 </Footer>
                 
             </div>
