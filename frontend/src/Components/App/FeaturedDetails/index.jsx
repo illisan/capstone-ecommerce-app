@@ -5,9 +5,30 @@ import {Row, Button} from 'react-materialize'
  
 
 class FeaturedDetails extends Component {
+    constructor () {
+        super()
+        this.state = {
+            itemIndex: 0
+        }
+    }
 
     render() {
+    
+    //  let itemArr =  this.props.featuredItems.map((item) => {
+    //         return item[0]
+    //  })
+    //  console.log(itemArr)
 
+    // let  changeItem = (index) => {
+    // console.log(this.state.featuredItems) 
+    // console.log("changeeeee")
+    // console.log(index)
+    // this.setState({
+    //   thisItem: index,
+    // })
+
+//   }
+console.log(this.props.featuredItems)
         let allItems = this.props.featuredItems
         let params = this.props.match.params
 
@@ -16,24 +37,25 @@ class FeaturedDetails extends Component {
                 return item
         })
         console.log(filterItem)
+        console.log(this.props.thisItem) 
 
         // MAPPING OUT SIMILAR PRODUCTS ARRAY IN A CONDITIONAL: Doesn't show array
 
-        let similarItems =
-        console.log(filterItem[0].SimilarProducts)        
-        if (filterItem[0].SimilarProducts !== undefined) {
-            console.log(filterItem[0].SimilarProducts[0].SimilarProduct)
-            //let similarItems = (filterItem[0].SimilarProducts[0].SimilarProduct)
-            //console.log(similarItems)
-            let otherArr = filterItem[0].SimilarProducts[0].SimilarProduct.map((item, i) => {
-                //console.log(othersJSX)
-                console.log(item.Title[0])
-                return (<div key={i}>
-                    <h4>{item.Title[0]}</h4>
-                </div>)
+        // let similarItems =
+        // console.log(filterItem[0].SimilarProducts)        
+        // if (filterItem[0].SimilarProducts !== undefined) {
+        //     console.log(filterItem[0].SimilarProducts[0].SimilarProduct)
+        //     //let similarItems = (filterItem[0].SimilarProducts[0].SimilarProduct)
+        //     //console.log(similarItems)
+        //     let otherArr = filterItem[0].SimilarProducts[0].SimilarProduct.map((item, i) => {
+        //         //console.log(othersJSX)
+        //         console.log(item.Title[0])
+        //         return (<div key={i}>
+        //             <h4>{item.Title[0]}</h4>
+        //         </div>)
 
-            })
-        }   
+        //     })
+        // }   
     
         return (
             <div className="itemDetails">
@@ -53,10 +75,14 @@ class FeaturedDetails extends Component {
                         <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(filterItem) }} >Add to Cart</Button>
                     </div> 
                 </div>
+                <Button onClick = {
+                () => {this.changeItem(this.props.thisItem - 1)}}>Prev</Button>
+
+                <Button onClick={this.props.changeItem}>Next</Button>
                 <h4 className="othersHeader">Other Products Your Might Like</h4>
                 <div>
                     <Row>
-                        <h4>{similarItems}</h4>
+                        {/* <h4>{similarItems}</h4> */}
                     </Row> 
                 </div>
             </div>

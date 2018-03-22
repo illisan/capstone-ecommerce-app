@@ -1,25 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Table, Button, Container, Icon, Modal, Input } from 'react-materialize'
-import axios from 'axios';
-
-
-
 
 class Cart extends Component {
-
-    // componentDidUpdate(nextProps, nextState) {
-    //     console.log(this.props)
-    //     console.log(nextProps)
-    //     console.log(this.props.cart)
-    //     if (nextState.cart !== this.state.cart) {
-
-    //         this.setState({
-    //             cart: nextState.cart
-    //         })
-           
-    //     }
-   
-    // }
 
     constructor(props) {
         super(props)
@@ -43,7 +25,7 @@ class Cart extends Component {
                 <tbody>
                     <tr>
                         <td>{this.props.cart[i].title}</td>
-                        <td>{this.props.cart[i].price / 100}</td>
+                        <td>CDN$ {this.props.cart[i].price / 100}</td>
                         <td><Button className="clearBtn" onClick={() => { this.props.removeItem(item) }}><Icon>clear</Icon></Button></td>
                     </tr>
                 </tbody>
@@ -52,16 +34,7 @@ class Cart extends Component {
 
 
     render() {
-        // console.log(this.props.cart)
-        //    let getTotal= this.props.cart.forEach((item) => {
-        //         //console.log(product)
-        //         if (getTotal === 0) {
-        //             getTotal = "Your Cart Is Empty :("
-        //         }
-        //         this.setState({
-        //             total: this.state.total += Number(item[0].Offers[0].Offer[0].OfferListing[0].Price[0].Amount[0]) / 100
-        //         })
-        //     }) 
+
         console.log(this.props.cart)
         let priceArr = this.props.cart.map((item) => {
             return item.price
@@ -89,39 +62,12 @@ class Cart extends Component {
 
                 <Modal
                     trigger={<Button>Check Out</Button>}>
-                    <h4>Customer Information</h4>
+                    <h4>Enter your username and password</h4>
+                    <Button className="loginBtn">Proceed as Guest</Button>
                     <Row>
-                        <Input placeholder="First Name" s={6} label="First Name" />
-                        <Input s={6} label="Last Name" />
-                        <Input type="text" label="Phone" s={12} />
-                        <Input type="email" label="Email" s={12} />
-                        <Modal
-                            trigger={<Button>Next</Button>}>
-                            <h4>Billing Address</h4>
-                            <Row>
-                                <Input type="text" label="Street Address" s={12} />
-                                <Input type="text" label="Postal Code" s={12} />
-                                <Input type="text" label="City" s={12} />
-                                <Modal
-                                    trigger={<Button>Next</Button>}>
-                                    <h4>Payment Information</h4>
-                                    <Row>
-                                        <Input type="password" label="Credit Card" s={12} />
-                                        <Input type="text" label="Expiry" s={12} />
-                                        <Input type="text" label="CVC Code" s={12} />
-                                        <Modal
-                                            trigger={<Button>Confirm Order</Button>}>
-                                            <h4>Thank You For Your Purchase!</h4>
-                                            <p>Sign Up For Our NewsLetter!</p>
-                                            <Row>
-                                                <Input placeholder="Name" s={6} label="First Name" />
-                                                <Input type="email" label="Email" s={12} />
-                                            </Row>
-                                        </Modal>
-                                    </Row>
-                                </Modal>
-                            </Row>
-                        </Modal>
+                        <Input s={6} label="User Name" />
+                        <Input type="password" label="password" s={12} />
+                        <Button className="loginBtn">Submit</Button>
                     </Row>
                 </Modal>
             </Container>

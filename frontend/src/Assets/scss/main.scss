@@ -66,6 +66,13 @@ main {
     z-index: 99;
     top:0;
     width:100%;
+    display: flex;
+    align-items: center;
+  }
+
+  button.btn.loginBtn {
+    margin-left:56rem;
+    background:#e9d277;
   }
 
   section {

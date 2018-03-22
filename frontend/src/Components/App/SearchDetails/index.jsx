@@ -37,6 +37,8 @@ class SearchDetails extends Component {
                         <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(filterItem) }}>Add to Cart</Button>
                     </div>
                 </div>
+                <Button onClick={this.props.changeItem}>Prev</Button>
+                <Button onClick={this.props.changeItem}>Next</Button>
                 <h4 className="othersHeader">Other Products Your Might Like</h4>
             </div>
         )

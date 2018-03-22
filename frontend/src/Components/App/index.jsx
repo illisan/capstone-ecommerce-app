@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../Assets/css/main.css';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom'
-import { Button } from 'react-materialize'
+import { Button, Modal, Row, Input } from 'react-materialize'
 
 
 import Nav from './Nav'
@@ -22,10 +22,10 @@ class App extends Component {
     this.state = {
       category: null,
       products: [],
+      //itemIndex: 0,
       cart: [],
       featuredItems: [],
       cartQty: 0,
-      total: 0,
       searchResults: [],
       keywords: null,
       fireRedirect: false
@@ -91,6 +91,18 @@ class App extends Component {
   }
 
 
+  // changeItem = (index) => {
+
+  //   console.log(this.state.featuredItems) 
+  //   console.log("changeeeee")
+  //   console.log(index)
+  //   console.log(this.state.thisItem)
+  //   this.setState({
+  //     thisItem: index,
+  //   })
+    
+  // }
+
   addToCart = (item) => {
     console.log('cart function getting called')
     console.log(item)
@@ -118,14 +130,8 @@ class App extends Component {
     console.log(this.state.cart)
   }
 
-  // onClick of Clear button, the entire item is removed from cart. 
-  // the price of the removed item is subtracted from the total.
-
 
   removeItem = (cartIndex) => {
-    let newCartArr = [...this.state.cart].map((item) => {
-      return item.id
-    })
     console.log(this.state.cart)
     console.log(cartIndex.id)
     axios.post("http://localhost:8080/clear", {
@@ -158,12 +164,19 @@ class App extends Component {
         <main>
           <header className="App-header">
             <img className="bbLogo responsive-img" alt="" src="../../../bb_logo.png" />
-            <Button>Log In</Button>
+            <Modal
+              trigger={<Button className="loginBtn">Log In</Button>}>
+              <h4>Enter your username and password</h4>
+              <Row>
+                <Input s={6} label="User Name" />
+                <Input type="password" label="password" s={12} />
+                <Button className="loginBtn">Submit</Button>
+              </Row>
+            </Modal>
           </header>
 
           <Switch>
             <section>
-
               <Route exact path='/home' render={(props) => {
                 return <FeaturedItems
                   featuredItems={this.state.featuredItems}
@@ -175,6 +188,8 @@ class App extends Component {
                 return <FeaturedDetails
                   featuredItems={this.state.featuredItems}
                   addToCart={this.addToCart}
+                  changeItem={this.changeItem}
+                  thisItem={this.state.thisItem}
                   {...props}
                 />
               }
@@ -201,6 +216,8 @@ class App extends Component {
                 return <ProductDetails
                   productList={this.state.products}
                   addToCart={this.addToCart}
+                  thisItem={this.state.thisItem}
+                  changeItem={this.changeItem}
                   {...props} />
               }
               } />
@@ -216,6 +233,8 @@ class App extends Component {
                 return <SearchDetails
                   searchResults={this.state.searchResults}
                   addToCart={this.addToCart}
+                  changeItem={this.changeItem}
+                  thisItem={this.state.thisItem}
                   {...props} />
               }
               } />

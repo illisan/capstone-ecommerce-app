@@ -4,9 +4,10 @@ import { Link } from "react-router-dom"
 import ParallaxDisplay from '../Parallax'
 
 class FeaturedItems extends Component {
+    
 
     renderFeatItem = (item, i) => (
-
+        
         <div key={i}>
             <Col className="child">
                 <Link to={`/home/${item.ASIN}`}>
@@ -18,9 +19,12 @@ class FeaturedItems extends Component {
             </Col>
         </div>
     )
+    
  
     render() {
+        
         return (
+            
             <div>
                 <ParallaxDisplay/>
             <Container featItems>

@@ -43,7 +43,13 @@ header.App-header {
   position: fixed;
   z-index: 99;
   top: 0;
-  width: 100%; }
+  width: 100%;
+  display: flex;
+  align-items: center; }
+
+button.btn.loginBtn {
+  margin-left: 56rem;
+  background: #e9d277; }
 
 section {
   padding-top: 9%;

@@ -17,7 +17,6 @@ class ProductDetails extends Component {
                 return item
         })
         console.log(filterItem)
-
         let image = filterItem[0].ImageSets[0]
         return (
             <div className="itemDetails">
@@ -37,6 +36,8 @@ class ProductDetails extends Component {
                         <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(filterItem) }}>Add to Cart</Button>
                     </div>
                 </div>
+                <Button onClick={this.props.changeItem}>Prev</Button>
+                <Button onClick={this.props.changeItem}>Next</Button>
                 <h4 className="othersHeader">Other Products Your Might Like</h4>
             </div>
         )

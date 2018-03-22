@@ -21,9 +21,6 @@ class SearchResults extends Component {
     ) 
 
     render() {
-        // console.log('search results oh wow')
-        // console.log(this.props.searchResults)
-        // console.log(this.props.keywords)
         return (
             <Container>
                 <h3>Search Results for " {this.props.keywords} "</h3>
