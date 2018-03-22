@@ -9,7 +9,6 @@ class Cart extends Component {
             cart: (this.props.cart),
             total: 0
         }
-        console.log(this.props.cart)
     }
 
     renderCart = (item, i) => (
@@ -35,11 +34,9 @@ class Cart extends Component {
 
     render() {
 
-        console.log(this.props.cart)
         let priceArr = this.props.cart.map((item) => {
             return item.price
         })
-        console.log(priceArr)
         let cartTotal = priceArr.reduce((sum, item) => {
             return sum + item / 100
         }, 0).toFixed(2)

@@ -4,21 +4,36 @@ import { Button, Container, Row } from 'react-materialize'
 
 class SearchDetails extends Component {
 
-    render() {
-        // console.log(this.props.searchResults)
-        // console.log(this.props.match.params)
+    constructor() {
+        super()
+        this.state = {
+            searchIndex: 0
+        }
+    }
+
+    changeItem = (index) => {
+        this.setState({
+            searchIndex: index
+        })
+    }
+
+    componentDidMount() {
         let products = this.props.searchResults
         let params = this.props.match.params
-
-        let filterItem = products.filter((item, i) => {
+            products.filter((item, i) => {
             if (item.ASIN[0] === params.productASIN)
-                return item
+                this.setState({
+                    searchIndex: i
+                })
+            return i
         })
 
-        console.log(filterItem)
-        // console.log(filterItem[0].ItemAttributes[0].Feature)
+    }
 
-        let featuresArr = filterItem[0].ItemAttributes[0].Feature.map((title) => {
+    render() {
+
+        let filterItem = this.props.searchResults
+        let featuresArr = filterItem[this.state.searchIndex].ItemAttributes[0].Feature.map((title) => {
             return <div key={title}>
                 <div>
                     <ul>
@@ -27,7 +42,7 @@ class SearchDetails extends Component {
                 </div>
             </div>
         })
-        let allImgsArr = filterItem[0].ImageSets[0].ImageSet.map((img) => {
+        let allImgsArr = filterItem[this.state.searchIndex].ImageSets[0].ImageSet.map((img) => {
             return <div key={img}>
                 <div>
                     <div className="imgs">
@@ -37,25 +52,28 @@ class SearchDetails extends Component {
             </div>
         })
 
-        let image = filterItem[0].ImageSets[0]
+        let image = filterItem[this.state.searchIndex].ImageSets[0]
         return (
             <div className="itemDetails">
-                <h2 className="itemTitle" >{filterItem[0].ItemAttributes[0].Title}</h2>
+                <h2 className="itemTitle" >{filterItem[this.state.searchIndex].ItemAttributes[0].Title}</h2>
                 <div className="changeBtn">
-                    <a className="changeBtn btnChild" onClick={() => { this.changeItem(this.props.thisItem - 1) }}>Prev</a>
-                    <a className="changeBtn btnChild" onClick={this.props.changeItem}>Next</a>
+                    <Button className="changeBtn btnChild" onClick={() => { this.changeItem(this.state.searchIndex - 1) }}
+                        disabled={this.state.searchIndex === 0}>Prev</Button>
+                    <Button className="changeBtn btnChild" onClick={() => { this.changeItem(this.state.searchIndex + 1) }}
+                        disabled={this.state.searchIndex === filterItem.length - 1}
+                    >Next</Button>
                 </div>
+
                 <div className="mainBox">
                     <div className="imgBox">
                         <img className="productImg" alt="" src={
-                            filterItem[0].LargeImage === undefined ? //ternary works for most images but not others, ex.matcha and coffee capsules.
+                            filterItem[this.state.searchIndex].LargeImage === undefined ? 
                                 image.ImageSet[0].LargeImage[0].URL[0] :
-                                filterItem[0].LargeImage[0].URL[0]
-                        }
+                                filterItem[this.state.searchIndex].LargeImage[0].URL[0]}
                         />
                     </div>
                     <div className="priceBox">
-                        <h4>{filterItem[0].Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h4>
+                        <h4>{filterItem[this.state.searchIndex].Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h4>
                         <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(filterItem) }}>Add to Cart</Button>
                         <p className>{featuresArr}</p>
                     </div>
@@ -72,8 +90,6 @@ class SearchDetails extends Component {
         )
     }
 }
-
-
 
 
 

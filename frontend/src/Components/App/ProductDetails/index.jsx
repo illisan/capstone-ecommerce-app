@@ -4,20 +4,36 @@ import { Button, Container, Row } from 'react-materialize'
 
 
 class ProductDetails extends Component { 
+    constructor() {
+        super()
+        this.state = {
+            itemIndex: 0
+        }
+    }
 
-    render() {
-        // console.log(this.props.productList)
-        // console.log(this.props.match.params)
+    changeItem = (index) => {
+        this.setState({
+            itemIndex: index
+        })
+    }
 
+    componentDidMount() {
         let products = this.props.productList
         let params = this.props.match.params 
 
-        let filterItem = products.filter((item, i) => {
+        products.filter((item, i) => {
             if (item.ASIN[0] === params.productASIN)
-                return item
+                this.setState({
+                    itemIndex: i
+                })
+            return i
         })
 
-        let featuresArr = filterItem[0].ItemAttributes[0].Feature.map((title) => {
+    }
+    render() {
+    
+        let products = this.props.productList
+        let featuresArr = products[this.state.itemIndex].ItemAttributes[0].Feature.map((title) => {
             return <div key={title}>
                 <div>
                     <ul>
@@ -27,7 +43,7 @@ class ProductDetails extends Component {
             </div>
         })
 
-        let allImgsArr = filterItem[0].ImageSets[0].ImageSet.map((img) => {
+        let allImgsArr = products[this.state.itemIndex].ImageSets[0].ImageSet.map((img) => {
             return <div key={img}>
                 <div>
                     <div className="imgs">
@@ -37,27 +53,29 @@ class ProductDetails extends Component {
             </div>
         })
 
-        console.log(filterItem)
-        let image = filterItem[0].ImageSets[0]
+        let image = products[this.state.itemIndex].ImageSets[0]
         return (
             <div className="itemDetails">
-                <h2 className="itemTitle" >{filterItem[0].ItemAttributes[0].Title}</h2>
+                <h2 className="itemTitle" >{products[this.state.itemIndex].ItemAttributes[0].Title}</h2>
                 <div className="changeBtn">
-                    <a className="changeBtn btnChild" onClick={() => { this.changeItem(this.props.thisItem - 1) }}>Prev</a>
-                    <a className="changeBtn btnChild" onClick={this.props.changeItem}>Next</a>
+                    <Button className="changeBtn btnChild" onClick={() => { this.changeItem(this.state.itemIndex - 1) }}
+                        disabled={this.state.itemIndex === 0}>Prev</Button>
+                    <Button className="changeBtn btnChild" onClick={() => { this.changeItem(this.state.itemIndex + 1) }}
+                        disabled={this.state.itemIndex === products.length - 1}
+                    >Next</Button>
                 </div>
                 <div className="mainBox">
                     <div className="imgBox">
                         <img className="productImg" alt="" src={
-                            filterItem[0].LargeImage === undefined ? 
+                            products[this.state.itemIndex].LargeImage === undefined ? 
                                 image.ImageSet[0].LargeImage[0].URL[0] :
-                                filterItem[0].LargeImage[0].URL[0]
+                                products[this.state.itemIndex].LargeImage[0].URL[0]
                         }
                         />
                     </div>
                     <div className="priceBox">
-                        <h4>{filterItem[0].Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h4>
-                        <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(filterItem) }}>Add to Cart</Button>
+                        <h4>{products[this.state.itemIndex].Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h4>
+                        <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(products) }}>Add to Cart</Button>
                         <p className>{featuresArr}</p>                        
                        
                     </div>

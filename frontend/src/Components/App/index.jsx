@@ -22,7 +22,6 @@ class App extends Component {
     this.state = {
       category: null,
       products: [],
-      //itemIndex: 0,
       cart: [],
       featuredItems: [],
       cartQty: 0,
@@ -51,23 +50,18 @@ class App extends Component {
   }
 
   searchItems = (keywords) => {
-    console.log("search search search")
-    console.log(keywords)
     axios.get(`http://localhost:8080/searchData?keyword=${keywords}+fair%20trade+organic`)
       .then((response) => {
         this.setState({
           searchResults: response.data,
           keywords
         })
-        console.log(response.data)
-        console.log(this.state.keywords)
       })
 
   }
 
   submitSearch = (event) => {
     event.preventDefault();
-    console.log(event.target.searchBox.value)
     let query = event.target.searchBox.value
     axios.get(`http://localhost:8080/searchData?keyword=${query}+fair%20trade+organic`)
       .then((response) => {
@@ -91,25 +85,9 @@ class App extends Component {
   }
 
 
-  // changeItem = (index) => {
-
-  //   console.log(this.state.featuredItems) 
-  //   console.log("changeeeee")
-  //   console.log(index)
-  //   console.log(this.state.thisItem)
-  //   this.setState({
-  //     thisItem: index,
-  //   })
-    
-  // }
-
   addToCart = (item) => {
-    console.log('cart function getting called')
-    console.log(item)
     let itemTitle = item[0].ItemAttributes[0].Title[0]
     let itemPrice = item[0].Offers[0].Offer[0].OfferListing[0].Price[0].Amount[0]
-    console.log(itemTitle)
-    console.log(itemPrice)
     axios.post("http://localhost:8080/cart", {
       title: itemTitle,
       price: itemPrice,
@@ -120,32 +98,23 @@ class App extends Component {
 
         axios.get(`http://localhost:8080/cart`)
           .then((response) => {
-            console.log(response.data)
             this.setState({
               cart: response.data,
               cartQty: response.data.length
             })
           })
       })
-    console.log(this.state.cart)
   }
 
 
   removeItem = (cartIndex) => {
-    console.log(this.state.cart)
-    console.log(cartIndex.id)
     axios.post("http://localhost:8080/clear", {
       id: cartIndex.id
     }).then((response) => {
-      console.log(response)
-      // axios.get(`http://localhost:8080/cart`)
-      //   .then((response) => {
-      //     console.log(response.data)
-          this.setState({
-            cart: response.data,
-            cartQty: response.data.length
-          })
-        // })
+      this.setState({
+        cart: response.data,
+        cartQty: response.data.length
+      })
     })
 
   }
@@ -205,9 +174,9 @@ class App extends Component {
               } />
               <Route exact path='/products/:category' render={(props) => {
                 return <ProductList
-                  category={props.match.params.category} // get the category from the route, not the state, as the state hasn't been updated at this point. The child component ProductList will call refreshProducts and subsequently update the app state's category and products
-                  productList={this.state.products}
+                  category={props.match.params.category}
                   refreshProducts={this.refreshProducts}
+                  productList={this.state.products}
                   {...props}
                 />
               }
