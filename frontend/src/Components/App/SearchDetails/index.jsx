@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container, Row, Icon} from 'react-materialize'
+import { Button, Container, Row, Icon, Col} from 'react-materialize'
 
 
 class SearchDetails extends Component {
@@ -45,8 +45,8 @@ class SearchDetails extends Component {
         let allImgsArr = filterItem[this.state.searchIndex].ImageSets[0].ImageSet.map((img) => {
             return <div key={img}>
                 <div>
-                    <div className="imgs">
-                        <img className="smallImgs" alt="" src={img.LargeImage[0].URL[0]} />
+                    <div>
+                        <Col s={12} m={6} l={6}><img alt='' className="otherImgs" src={img.LargeImage[0].URL[0]} /></Col>
                     </div>
                 </div>
             </div>

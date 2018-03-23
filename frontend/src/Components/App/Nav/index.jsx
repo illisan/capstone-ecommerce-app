@@ -19,7 +19,6 @@ class Nav extends Component {
                 {this.props.fireRedirect && (
                     <Redirect to ={from || "/search/:keywords"} />
                 )}
-
                 <div className="navLinks">
                     <li><Link to="/home">Home</Link></li>
                     <li><Link to="/cart">Cart<Badge newIcon>{this.props.cartQty}</Badge></Link></li>

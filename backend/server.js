@@ -85,9 +85,9 @@ var client = amazon.createClient({
 app.get('/featuredData', (req, res) => {
     req.query.searchIndex
     client.itemSearch({
-        searchIndex: 'Grocery',
+        searchIndex: 'All',
         responseGroup: 'ItemAttributes,Images,Offers,Reviews',
-        keywords: 'fair trade, eco',
+        keywords: 'fair trade, organic, granola',
         domain: 'webservices.amazon.ca',
     }).then(function (results) {
         res.json(results);
@@ -103,9 +103,7 @@ app.get('/searchData', (req, res) => {
     client.itemSearch({
         searchIndex: 'All',
         responseGroup: 'ItemAttributes,Images,Offers,Reviews',
-        // keywords: ('fair trade, eco'+ ', ' + userInput),
         keywords: userInput.split(' ').join(', '),
-        //IncludeReviewSummary: true,
         domain: 'webservices.amazon.ca'
     }).then(function (results) {
         res.json(results);

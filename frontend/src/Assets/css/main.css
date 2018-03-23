@@ -36,7 +36,9 @@ main {
 
 img.bbLogo {
   width: 30%;
-  margin-left: 2rem; }
+  margin-left: 2rem;
+  margin-right: 4rem;
+  min-width: 30rem; }
 
 header.App-header {
   background-color: #5a898f;
@@ -49,7 +51,6 @@ header.App-header {
   align-items: center; }
 
 button.btn.loginBtn {
-  margin-left: 56rem;
   background: #e9d277; }
 
 section {
@@ -184,9 +185,9 @@ span.badge.new {
 
 .priceBox {
   margin: 0 5% 0 5%;
-  min-width: 40rem; }
+  min-width: 20rem; }
 
-.productImg {
+img.productImg {
   -webkit-animation: flip 1s;
   animation: flip 1s; }
 
@@ -220,13 +221,9 @@ h2.itemTitle {
 .btn:hover, .btn-large:hover {
   background: #e9d277; }
 
-.row.imgGrid {
-  display: grid;
-  grid-template-columns: 20rem 20rem;
-  grid-gap: 40%; }
-
-img.smallImgs {
-  width: 20rem; }
+img.otherImgs {
+  width: 20rem;
+  padding: 2rem; }
 
 .changeBtn {
   display: flex;

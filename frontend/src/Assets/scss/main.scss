@@ -58,6 +58,8 @@ main {
   img.bbLogo{
     width: 30%;    
     margin-left:2rem;
+    margin-right:4rem;
+    min-width: 30rem;
   } 
   
   header.App-header {
@@ -69,18 +71,18 @@ main {
     width:100%;
     display: flex;
     align-items: center;
+ 
   }
 
   button.btn.loginBtn {
-    margin-left:56rem;
     background:#e9d277;
   }
+
 
   section {
     padding-top:8.8rem;;
     padding-bottom:0;
     background: #a3e2ea;
-    // bottom:0;
   }
 
 

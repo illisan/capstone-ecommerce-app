@@ -12,13 +12,13 @@
 
 .priceBox {
     margin: 0 5% 0 5%;
-    min-width:40rem;
+    min-width:20rem;
 }
-.productImg {
+img.productImg {
    -webkit-animation: flip 1s;
   animation: flip 1s;
-
 }
+
 
 @-webkit-keyframes flip {
   from {
@@ -64,14 +64,9 @@ h4.othersHeader {
     background: #e9d277;
 } 
 
-.row.imgGrid {
-    display: grid;
-    grid-template-columns: 20rem 20rem;
-    grid-gap: 40%;
-}
-
-img.smallImgs {
+img.otherImgs {
     width: 20rem;
+    padding: 2rem;
 }
 
 .changeBtn {
@@ -84,3 +79,6 @@ img.smallImgs {
 button.btn.changeBtn.btnChild {
     height: 3rem;
 }
+
+
+

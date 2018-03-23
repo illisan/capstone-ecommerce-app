@@ -71,7 +71,7 @@ class App extends Component {
           fireRedirect: true
         })
       })
-    // event.target.saerchBox.value = ""
+     event.target.searchBox.value = ""
   }
 
   refreshProducts = (category) => {
