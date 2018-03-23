@@ -157,6 +157,22 @@ span.badge.new {
   .masonry {
     column-count: 3; } }
 
+.card {
+  -webkit-animation: flip 1s;
+  animation: flip 1s; }
+
+@-webkit-keyframes flip {
+  from {
+    transform: rotateY(90deg); }
+  to {
+    transform: rotateY(0deg); } }
+
+@keyframes flip {
+  from {
+    transform: rotateY(90deg); }
+  to {
+    transform: rotateY(0deg); } }
+
 .mainBox {
   display: flex;
   justify-content: space-between;
@@ -169,6 +185,22 @@ span.badge.new {
 .priceBox {
   margin: 0 5% 0 5%;
   min-width: 40rem; }
+
+.productImg {
+  -webkit-animation: flip 1s;
+  animation: flip 1s; }
+
+@-webkit-keyframes flip {
+  from {
+    transform: rotateY(90deg); }
+  to {
+    transform: rotateY(0deg); } }
+
+@keyframes flip {
+  from {
+    transform: rotateY(90deg); }
+  to {
+    transform: rotateY(0deg); } }
 
 h2.itemTitle, h4.othersHeader {
   padding-bottom: 2rem;
@@ -202,10 +234,8 @@ img.smallImgs {
   margin-bottom: 3rem;
   cursor: pointer; }
 
-a.changeBtn.btnChild {
-  font-size: 3rem;
-  color: green;
-  text-decoration: underline; }
+button.btn.changeBtn.btnChild {
+  height: 3rem; }
 
 footer.page-footer {
   background-color: #5a898f; }

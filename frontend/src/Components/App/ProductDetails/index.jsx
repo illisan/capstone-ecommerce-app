@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container, Row } from 'react-materialize'
+import { Button, Container, Row, Icon } from 'react-materialize'
 
 
 
@@ -59,10 +59,11 @@ class ProductDetails extends Component {
                 <h2 className="itemTitle" >{products[this.state.itemIndex].ItemAttributes[0].Title}</h2>
                 <div className="changeBtn">
                     <Button className="changeBtn btnChild" onClick={() => { this.changeItem(this.state.itemIndex - 1) }}
-                        disabled={this.state.itemIndex === 0}>Prev</Button>
+                        disabled={this.state.itemIndex === 0}><Icon>keyboard_arrow_left
+                        </Icon>Prev</Button>
                     <Button className="changeBtn btnChild" onClick={() => { this.changeItem(this.state.itemIndex + 1) }}
                         disabled={this.state.itemIndex === products.length - 1}
-                    >Next</Button>
+                    >Next<Icon>keyboard_arrow_right</Icon></Button>
                 </div>
                 <div className="mainBox">
                     <div className="imgBox">

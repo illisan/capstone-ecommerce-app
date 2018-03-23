@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Button, Container,} from 'react-materialize'
+import { Row, Button, Container, Icon} from 'react-materialize'
 
 
 
@@ -59,10 +59,11 @@ class FeaturedDetails extends Component {
                 <h2 className="itemTitle" >{filterItem[this.state.itemIndex].ItemAttributes[0].Title}</h2>
                 <div className="changeBtn">
                     <Button className="changeBtn btnChild" onClick={() => { this.changeItem(this.state.itemIndex - 1) }} 
-                    disabled={this.state.itemIndex === 0}>Prev</Button>
+                        disabled={this.state.itemIndex === 0}><Icon>keyboard_arrow_left
+                        </Icon>Prev</Button>
                     <Button className="changeBtn btnChild" onClick={() => { this.changeItem(this.state.itemIndex +1) }}
                         disabled={this.state.itemIndex === this.props.featuredItems.length -1}
-                    >Next</Button>
+                    >Next<Icon>keyboard_arrow_right</Icon></Button>
                 </div>
                 <div className="mainBox">
                     <div className="imgBox">
@@ -73,7 +74,7 @@ class FeaturedDetails extends Component {
                         }
                         />
                     </div>
-                    <div className="priceBox">
+                     <div className="priceBox">
                         <h4>{filterItem[this.state.itemIndex].Offers[0].Offer[0].OfferListing[0].Price[0].FormattedPrice[0]}</h4>
                         <Button waves='light' className="addBtn" onClick={() => { this.props.addToCart(filterItem) }} >Add to Cart</Button>
                         <p className>{featuresArr}</p>
