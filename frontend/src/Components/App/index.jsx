@@ -190,7 +190,7 @@ class App extends Component {
                   {...props} />
               }
               } />
-              <Route exact path='/search/:keyword' render={(props) => {
+              <Route exact path='/search/:keywords' render={(props) => {
                 return <SearchResults
                   searchResults={this.state.searchResults}
                   keywords={this.state.keywords}
@@ -198,7 +198,7 @@ class App extends Component {
                   {...props} />
               }
               } />
-              <Route path='/search/:keywords/:productASIN' render={(props) => {
+              <Route exact path='/search/:keywords/:productASIN' render={(props) => {
                 return <SearchDetails
                   searchResults={this.state.searchResults}
                   addToCart={this.addToCart}

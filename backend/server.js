@@ -79,7 +79,7 @@ var client = amazon.createClient({
     locale: 'CA',
 });
 
-
+ 
 //FEATURED ITEMS 
 
 app.get('/featuredData', (req, res) => {

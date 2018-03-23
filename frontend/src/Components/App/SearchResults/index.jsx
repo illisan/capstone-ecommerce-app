@@ -7,6 +7,7 @@ class SearchResults extends Component {
 
 
     renderSearch = (item, i) => (
+        
         <div key={i}>
             <Col className="child">
                 <Link to={`/search/${this.props.keywords}/${item.ASIN}`}>
@@ -17,9 +18,12 @@ class SearchResults extends Component {
                 </Link>
             </Col>
         </div>
+        
     )
+   
 
     render() {
+        console.log(this.props.searchResults)
         return (
             <Container>
                 <h3>Search Results for " {this.props.keywords} "</h3>

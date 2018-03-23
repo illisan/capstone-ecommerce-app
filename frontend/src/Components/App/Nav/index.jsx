@@ -15,6 +15,7 @@ class Nav extends Component {
                     <Icon medium>search</Icon>
                     <input name="searchBox" className="searchBar" placeholder="Search"/>
                 </form>
+                
                 {this.props.fireRedirect && (
                     <Redirect to ={from || "/search/:keywords"} />
                 )}
