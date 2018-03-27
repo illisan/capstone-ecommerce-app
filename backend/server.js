@@ -96,6 +96,8 @@ app.get('/featuredData', (req, res) => {
     });
 })
 
+//SEARCH REQUEST
+
 app.get('/searchData', (req, res) => {
     console.log(req.query.keyword)
     let userInput = req.query.keyword
