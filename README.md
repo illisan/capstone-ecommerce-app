@@ -5,13 +5,13 @@ People are rarely aware of the environmental and social implications of the prod
 Using the Amazon Product Advertising API. I requested three sets of data: 
 
 <h4>Featured Items</h4>
-<ul>
-  <li>Items search with the SeachIndex of ‘All’.</li>
-  <li>Keywords: Fairtrade, Organic, Granola</li>
-  <li>Returns: JSON with three items that fit the set parameters.</li>
-</ul>
+  <ul>
+    <li>Items search with the SeachIndex of ‘All’.</li>
+    <li>Keywords: Fairtrade, Organic, Granola</li>
+    <li>Returns: JSON with three items that fit the set parameters.</li>
+  </ul>
 <img alt="" src="/frontend/public/featured_request.png"/>
-<img alt="" src="/frontend/public/mint_search.gif"/>
+
 
 <h4>Searched Items</h4>
 <ul>
@@ -21,15 +21,48 @@ Using the Amazon Product Advertising API. I requested three sets of data:
   <li>Returns: JSON with 10 items that fit the set parameters.</li>
 </ul>
 <img alt="" src="/frontend/public/search_request.png"/>
+<p>Search funtionality on UI</p>
+<img alt="" src="/frontend/public/mint_search.gif"/>
 
 <h4>Pre-defined Categories</h4>
-<ul>
-  <li>Switch Statement with 6 cases, one for each category</li>
-  <li>Search index depends on category.</li>
-  <li>Keywords: vary with category.</li>
-  <li>Returns: JSON with 10 items that fit the selected category.</li>
-</ul>
+  <ul>
+    <li>Switch Statement with 6 cases, one for each category</li>
+    <li>Search index depends on category.</li>
+    <li>Keywords: vary with category.</li>
+    <li>Returns: JSON with 10 items that fit the selected category.</li>
+  </ul>
 <img alt="" src="/frontend/public/category_request.png"/>
+<h4>UI presentation</h4>
+  <ul>
+    <li>Framework: React Materialize</li>
+    <li>Features: SideNav, Responsive Masonry grid layout, CSS Transition Animations, Parallax Imagery on Homepage</li>
+  </ul>
+<img alt="" src="/frontend/public/category.png"/>
+
+<h4>Usability</h4>
+<p>User is able to navigate through multiple arrays of products through pre-defined categories or page search. All items have a details page that includes: price, all images, and product features. The user can easily navigate through the single item pages and add items to cart.</p>
+<img alt="" src="/frontend/public/singe_item.png"/>
+
+<h4>Cart</h4>
+<p>Inside the cart user is able to see a list of selected items and total price. Cart can be modified by removing items. Cart is saved in a local PostgreSQL database. </p>
+<img alt="" src="/frontend/public/cart.gif"/>
+
+
+<h4>Next Steps</h4>
+  <ol>
+    <li>Incorporating the CreateCart, and Checkout operations from the Amazon Product API.</li>
+    <li>Add an authentication system for a signed in user.</li>
+    <li>Include related/suggested/similar items array on each item details page.</li>
+  </ol>
+
+<h4>The Stack</h4>
+  <ul>
+    <li>React JS</li>
+    <li>React Materialize</li>
+    <li>SASS</li>
+    <li>Node.js</li>
+    <li>PostgreSQL</li>
+  </ul>
  
 
 
